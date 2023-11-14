@@ -1,3 +1,5 @@
+import "./MyCountries.scss";
+
 const MyCountries = () => {
   return <div>MyCountries</div>;
 };
