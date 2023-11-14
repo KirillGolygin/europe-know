@@ -1,0 +1,32 @@
+.header {
+    background: #FFF;
+    padding: 17px 21px;
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+
+        .heading {
+            text-decoration: none;
+            color: #252525;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 400;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 30px;
+
+            .button {
+                color: #252525;
+                text-align: center;
+                font-size: 20px;
+                font-weight: 400;
+                border: none;
+                background-color: transparent;
+                cursor: pointer;
+            }
+        }
+    }
+}
