@@ -6,12 +6,14 @@ const Header = () => {
   return (
     <header className="header">
       <nav className="navbar">
-        <h1 className="heading">
-          <Link to={"/"}>Europe.know</Link>
+        <h1>
+          <Link className="heading" to={"/"}>
+            Europe.know
+          </Link>
         </h1>
-        <div>
-          <button>Login</button>
-          <button>Register</button>
+        <div className="btn-group">
+          <button className="button">Login</button>
+          <button className="button">Register</button>
         </div>
       </nav>
     </header>
