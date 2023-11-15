@@ -1,5 +1,5 @@
 import { createAction, createSlice } from "@reduxjs/toolkit";
-import { put } from "redux-saga/effects";
+import { put, call } from "redux-saga/effects";
 
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./store";
@@ -12,6 +12,11 @@ interface Country {
     oficial: string;
   };
   capital: string[];
+  flags: {
+    svg: string;
+    png: string;
+    alt: string;
+  };
 }
 
 interface CountriesState {
@@ -26,11 +31,10 @@ const initialState: CountriesState = {
   error: null,
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function* getCountriesSaga(): any {
   try {
-    const response = yield getAllCountries();
-    put(getCountriesPending);
+    yield put(getCountriesPending());
+    const response = yield call(getAllCountries);
 
     const payload = response.data;
     yield put(getCountriesSuccess(payload));
@@ -62,9 +66,14 @@ export const CountriesSlice = createSlice({
 export const GET_COUNTRIES = "countries/getCountries";
 export const getCountries = createAction(GET_COUNTRIES);
 
-const { getCountriesSuccess, getCountriesPending, getCountriesRejected } =
-  CountriesSlice.actions;
+export const {
+  getCountriesSuccess,
+  getCountriesPending,
+  getCountriesRejected,
+} = CountriesSlice.actions;
 
 export const selectCountries = (state: RootState) => state.countries.countries;
+export const selectLoading = (state: RootState) => state.countries.loading;
+export const selectError = (state: RootState) => state.countries.error;
 
 export default CountriesSlice.reducer;
