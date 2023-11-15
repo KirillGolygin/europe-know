@@ -1,0 +1,10 @@
+.star {
+    padding-top: 13px;
+    cursor: pointer;
+
+    .star-icon {
+        &:hover {
+            fill: #000000;
+        }
+    }
+}

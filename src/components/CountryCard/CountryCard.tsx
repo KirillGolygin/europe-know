@@ -1,6 +1,4 @@
-/// <reference types="vite-plugin-svgr/client" />
-
-import Star from "../../assets/svg/star.svg?react";
+import Star from "../Star/Star";
 
 import "./CountryCard.scss";
 
@@ -25,9 +23,7 @@ const CountryCard = ({ capital, name, flag }: CountryCardProps) => {
             <p>Capital:</p>
             <p className="capital-name">{capital}</p>
           </div>
-          <div className="star">
-            <Star />
-          </div>
+          <Star />
         </div>
       </div>
     </div>
