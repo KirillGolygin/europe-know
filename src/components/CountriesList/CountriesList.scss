@@ -1,0 +1,9 @@
+.loader {
+    display: flex;
+    justify-content: center;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(autofill, minmax(230px, 1fr));
+}
