@@ -1,6 +1,7 @@
 import { useAppSelector } from "../../redux/hooks/redux-hooks";
 
-import { Oval } from "react-loader-spinner";
+import CountryCard from "../CountryCard/CountryCard";
+import Loader from "../Loader/Loader";
 
 import {
   selectCountries,
@@ -18,13 +19,16 @@ const CountriesList = () => {
   return (
     <>
       {loading ? (
-        <div className="loader">
-          <Oval />
-        </div>
+        <Loader />
       ) : (
         <div className="cards-grid">
           {countries.map((country) => (
-            <p key={country.name.common}>{country.name.common}</p>
+            <CountryCard
+              key={country.name.common}
+              name={country.name.common}
+              capital={country.capital[0]}
+              flag={country.flags}
+            />
           ))}
         </div>
       )}

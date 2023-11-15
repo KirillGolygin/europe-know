@@ -12,6 +12,11 @@ interface Country {
     oficial: string;
   };
   capital: string[];
+  flags: {
+    svg: string;
+    png: string;
+    alt: string;
+  };
 }
 
 interface CountriesState {
