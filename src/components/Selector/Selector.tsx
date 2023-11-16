@@ -4,15 +4,19 @@ import {
   sortCountries,
 } from "../../redux/countries-slice";
 
-import Select from "react-select";
+import Select, { InputActionMeta } from "react-select";
 
 import "./Selector.scss";
 
 const Selector = () => {
   const dispatch = useAppDispatch();
-  const filterCountries = (value: string) => {
+  const filterCountries = (value: string, actionMeta?: InputActionMeta) => {
     setTimeout(() => {
-      dispatch(sortCountries(value));
+      if (value === "") {
+        dispatch(sortCountries(actionMeta?.prevInputValue as string));
+      } else {
+        dispatch(sortCountries(value));
+      }
     }, 500);
   };
 
@@ -29,7 +33,11 @@ const Selector = () => {
         options={options}
         placeholder=""
         className="selector"
-        onInputChange={(choice) => filterCountries(choice)}
+        backspaceRemovesValue
+        isClearable
+        onInputChange={(choice, actionMeta) =>
+          filterCountries(choice, actionMeta)
+        }
         onChange={(choice) => filterCountries(choice?.value as string)}
       />
     </div>
