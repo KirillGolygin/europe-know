@@ -5,6 +5,8 @@ import { takeEvery } from "redux-saga/effects";
 import countriesReducer from "./countries-slice";
 import { GET_COUNTRIES, getCountriesSaga } from "./countries-slice";
 
+import popupsReducer from "./popups-slice";
+
 const sagaMiddleware = createSagaMiddleware();
 
 function* sagas() {
@@ -15,6 +17,7 @@ export const store = configureStore({
   devTools: true,
   reducer: {
     countries: countriesReducer,
+    popups: popupsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
