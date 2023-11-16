@@ -23,8 +23,8 @@ const Selector = () => {
   }));
 
   return (
-    <div>
-      <p>Search your country:</p>
+    <div className="selector-container">
+      <p className="selector-text">Search your country:</p>
       <Select
         options={options}
         placeholder=""
