@@ -13,7 +13,7 @@ const Header = () => {
   const dispatch = useAppDispatch();
   const popup = useAppSelector(selectPopup);
 
-  const openPopup = (type: "login" | "signin") => {
+  const openPopup = (type: "register" | "signin") => {
     dispatch(togglePopUp());
     dispatch(changeType(type));
   };
@@ -26,17 +26,17 @@ const Header = () => {
           </Link>
         </h1>
         <div className="btn-group">
-          <button className="button" onClick={() => openPopup("login")}>
+          <button className="button" onClick={() => openPopup("signin")}>
             Login
           </button>
-          <button className="button" onClick={() => openPopup("signin")}>
+          <button className="button" onClick={() => openPopup("register")}>
             Register
           </button>
         </div>
       </nav>
       {popup.isOpen && (
         <Popup closePopup={() => dispatch(togglePopUp())}>
-          {popup.type === "login" ? (
+          {popup.type === "signin" ? (
             <div
               style={{ width: 400, height: 400, backgroundColor: "#fff" }}
             ></div>

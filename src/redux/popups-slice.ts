@@ -3,14 +3,14 @@ import { RootState } from "./store";
 
 interface PopupsState {
   popUp: {
-    type: "signin" | "login";
+    type: "signin" | "register";
     isOpen: boolean;
   };
 }
 
 const initialState: PopupsState = {
   popUp: {
-    type: "signin",
+    type: "register",
     isOpen: false,
   },
 };
@@ -23,7 +23,7 @@ export const PopupsSlice = createSlice({
       state.popUp.isOpen = !state.popUp.isOpen;
     },
 
-    changeType: (state, action: PayloadAction<"signin" | "login">) => {
+    changeType: (state, action: PayloadAction<"signin" | "register">) => {
       state.popUp.type = action.payload;
     },
   },
