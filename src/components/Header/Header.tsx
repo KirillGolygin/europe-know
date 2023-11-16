@@ -35,7 +35,7 @@ const Header = () => {
         </div>
       </nav>
       {popup.isOpen && (
-        <Popup>
+        <Popup closePopup={() => dispatch(togglePopUp())}>
           {popup.type === "login" ? (
             <div
               style={{ width: 400, height: 400, backgroundColor: "#fff" }}
