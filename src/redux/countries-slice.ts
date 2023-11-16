@@ -21,12 +21,14 @@ interface Country {
 
 interface CountriesState {
   countries: Country[];
+  filteredCountries: Country[];
   loading: boolean;
   error: string | null;
 }
 
 const initialState: CountriesState = {
   countries: [],
+  filteredCountries: [],
   loading: false,
   error: null,
 };
@@ -58,7 +60,13 @@ export const CountriesSlice = createSlice({
     getCountriesSuccess: (state, action: PayloadAction<Country[]>) => {
       state.loading = false;
       state.error = null;
+      state.filteredCountries = action.payload;
       state.countries = action.payload;
+    },
+    sortCountries: (state, action: PayloadAction<string>) => {
+      state.filteredCountries = state.countries.filter((country) =>
+        country.name.common.toLowerCase().includes(action.payload.toLowerCase())
+      );
     },
   },
 });
@@ -70,9 +78,11 @@ export const {
   getCountriesSuccess,
   getCountriesPending,
   getCountriesRejected,
+  sortCountries,
 } = CountriesSlice.actions;
 
-export const selectCountries = (state: RootState) => state.countries.countries;
+export const selectFilteredCountries = (state: RootState) =>
+  state.countries.filteredCountries;
 export const selectLoading = (state: RootState) => state.countries.loading;
 export const selectError = (state: RootState) => state.countries.error;
 

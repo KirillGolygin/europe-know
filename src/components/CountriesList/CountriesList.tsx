@@ -4,7 +4,7 @@ import CountryCard from "../CountryCard/CountryCard";
 import Loader from "../Loader/Loader";
 
 import {
-  selectCountries,
+  selectFilteredCountries,
   selectLoading,
   selectError,
 } from "../../redux/countries-slice";
@@ -12,7 +12,7 @@ import {
 import "./CountriesList.scss";
 
 const CountriesList = () => {
-  const countries = useAppSelector(selectCountries);
+  const countries = useAppSelector(selectFilteredCountries);
   const loading = useAppSelector(selectLoading);
   const error = useAppSelector(selectError);
 
