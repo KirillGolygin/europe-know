@@ -64,9 +64,15 @@ export const CountriesSlice = createSlice({
       state.countries = action.payload;
     },
     sortCountries: (state, action: PayloadAction<string>) => {
-      state.filteredCountries = state.countries.filter((country) =>
-        country.name.common.toLowerCase().includes(action.payload.toLowerCase())
-      );
+      state.filteredCountries = state.countries.filter((country) => {
+        if (!action.payload) {
+          return country.name.common.toLowerCase().includes("");
+        } else {
+          return country.name.common
+            .toLowerCase()
+            .includes(action.payload.toLowerCase());
+        }
+      });
     },
   },
 });
