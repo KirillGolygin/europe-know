@@ -1,6 +1,9 @@
 .header {
+    width: 100vw;
     background: #FFF;
     padding: 17px 21px;
+    position: fixed;
+    z-index: 999;
 
     .navbar {
         display: flex;
@@ -26,6 +29,10 @@
                 border: none;
                 background-color: transparent;
                 cursor: pointer;
+
+                &:last-of-type {
+                    margin-right: 20px;
+                }
             }
         }
     }
