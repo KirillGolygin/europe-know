@@ -6,7 +6,8 @@ import { selectPopup } from "../../redux/popups-slice";
 import { togglePopUp, changeType } from "../../redux/popups-slice";
 
 import Popup from "../Popup/Popup";
-import Form from "../Form/Form";
+import SignInForm from "../SignInForm/SigInForm";
+import RegistrationForm from "../RegistrationForm/RegistrationForm";
 
 import "./Header.scss";
 
@@ -38,12 +39,9 @@ const Header = () => {
       {popup.isOpen && (
         <Popup closePopup={() => dispatch(togglePopUp())}>
           {popup.type === "signin" ? (
-            <Form heading="Sign In" inputs={["Login", "Password"]} />
+            <SignInForm closePopup={() => dispatch(togglePopUp())} />
           ) : (
-            <Form
-              heading="Register"
-              inputs={["Login", "Password", "Confirm password"]}
-            />
+            <RegistrationForm closePopup={() => dispatch(togglePopUp())} />
           )}
         </Popup>
       )}
