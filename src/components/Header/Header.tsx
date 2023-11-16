@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+import Popup from "../Popup/Popup";
+
 import "./Header.scss";
 
 const Header = () => {
@@ -16,6 +18,10 @@ const Header = () => {
           <button className="button">Register</button>
         </div>
       </nav>
+
+      <Popup>
+        <div style={{ width: 400, height: 400, backgroundColor: "#fff" }}></div>
+      </Popup>
     </header>
   );
 };
