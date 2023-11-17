@@ -42,7 +42,9 @@ const Header = () => {
               <button className="button" onClick={() => dispatch(logoutUser())}>
                 Logout
               </button>
-              <button className="button">My countries</button>
+              <Link to={"/my-countries"}>
+                <button className="button">My countries</button>
+              </Link>
             </>
           ) : (
             <>
