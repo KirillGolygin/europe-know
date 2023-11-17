@@ -38,7 +38,7 @@ export function* getCountriesSaga(): any {
     yield put(getCountriesPending());
     const response = yield call(getAllCountries);
 
-    const payload = response.data;
+    const payload = yield response.data;
     yield put(getCountriesSuccess(payload));
   } catch (error) {
     yield put(getCountriesRejected(`Произошла ошибка: ${error}`));

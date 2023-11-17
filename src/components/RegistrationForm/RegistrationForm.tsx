@@ -1,3 +1,4 @@
+import { regUser } from "../../api/regUser";
 import FormWrap from "../FormWrap/FormWrap";
 
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -21,7 +22,8 @@ const RegistrationForm = ({ closePopup }: SigInFormProps) => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    await regUser(data);
     closePopup();
     reset();
     console.log(data);

@@ -1,3 +1,7 @@
+import { useAppDispatch } from "../../redux/hooks/redux-hooks";
+
+import { saveFormData, signinUser } from "../../redux/users-slice";
+
 import FormWrap from "../FormWrap/FormWrap";
 
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -13,6 +17,8 @@ interface Inputs {
 }
 
 const SignInForm = ({ closePopup }: SigInFormProps) => {
+  const dispatch = useAppDispatch();
+
   const {
     register,
     handleSubmit,
@@ -21,9 +27,10 @@ const SignInForm = ({ closePopup }: SigInFormProps) => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    closePopup();
+    dispatch(saveFormData(data));
+    dispatch(signinUser());
     reset();
-    console.log(data);
+    closePopup();
   };
 
   return (

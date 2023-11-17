@@ -3,17 +3,26 @@ import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/redux-hooks";
 
 import { selectPopup } from "../../redux/popups-slice";
+import {
+  selectCurrentUser,
+  logoutUser,
+  selectSigninError,
+  setCurrentUserLoading,
+} from "../../redux/users-slice";
 import { togglePopUp, changeType } from "../../redux/popups-slice";
 
 import Popup from "../Popup/Popup";
 import SignInForm from "../SignInForm/SigInForm";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
+import SigninError from "../SigninError/SigninError";
 
 import "./Header.scss";
 
 const Header = () => {
   const dispatch = useAppDispatch();
   const popup = useAppSelector(selectPopup);
+  const currentUser = useAppSelector(selectCurrentUser);
+  const signinError = useAppSelector(selectSigninError);
 
   const openPopup = (type: "register" | "signin") => {
     dispatch(togglePopUp());
@@ -28,12 +37,25 @@ const Header = () => {
           </Link>
         </h1>
         <div className="btn-group">
-          <button className="button" onClick={() => openPopup("signin")}>
-            Login
-          </button>
-          <button className="button" onClick={() => openPopup("register")}>
-            Register
-          </button>
+          {currentUser ? (
+            <>
+              <button className="button" onClick={() => dispatch(logoutUser())}>
+                Logout
+              </button>
+              <Link to={"/my-countries"}>
+                <button className="button">My countries</button>
+              </Link>
+            </>
+          ) : (
+            <>
+              <button className="button" onClick={() => openPopup("signin")}>
+                Login
+              </button>
+              <button className="button" onClick={() => openPopup("register")}>
+                Register
+              </button>
+            </>
+          )}
         </div>
       </nav>
       {popup.isOpen && (
@@ -44,6 +66,13 @@ const Header = () => {
             <RegistrationForm closePopup={() => dispatch(togglePopUp())} />
           )}
         </Popup>
+      )}
+
+      {signinError && (
+        <SigninError
+          closePopup={() => dispatch(setCurrentUserLoading())}
+          errorMessage={signinError}
+        />
       )}
     </header>
   );
