@@ -6,6 +6,7 @@ import countriesReducer from "./countries-slice";
 import { GET_COUNTRIES, getCountriesSaga } from "./countries-slice";
 
 import popupsReducer from "./popups-slice";
+import usersReducer from "./users-slice";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -18,6 +19,7 @@ export const store = configureStore({
   reducer: {
     countries: countriesReducer,
     popups: popupsReducer,
+    users: usersReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
