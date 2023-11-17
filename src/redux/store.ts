@@ -6,12 +6,15 @@ import countriesReducer from "./countries-slice";
 import { GET_COUNTRIES, getCountriesSaga } from "./countries-slice";
 
 import popupsReducer from "./popups-slice";
+
 import usersReducer from "./users-slice";
+import { SIGNIN_USER, signinUserSaga } from "./users-slice";
 
 const sagaMiddleware = createSagaMiddleware();
 
 function* sagas() {
   yield takeEvery(GET_COUNTRIES, getCountriesSaga);
+  yield takeEvery(SIGNIN_USER, signinUserSaga);
 }
 
 export const store = configureStore({
