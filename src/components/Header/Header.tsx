@@ -9,7 +9,7 @@ import {
   selectSigninError,
   setCurrentUserLoading,
 } from "../../redux/users-slice";
-import { togglePopUp, changeType } from "../../redux/popups-slice";
+import { openPopup, closePopup } from "../../redux/popups-slice";
 
 import Popup from "../Popup/Popup";
 import SignInForm from "../SignInForm/SigInForm";
@@ -24,10 +24,7 @@ const Header = () => {
   const currentUser = useAppSelector(selectCurrentUser);
   const signinError = useAppSelector(selectSigninError);
 
-  const openPopup = (type: "register" | "signin") => {
-    dispatch(togglePopUp());
-    dispatch(changeType(type));
-  };
+  const showPopup = (type: "signin" | "register") => dispatch(openPopup(type));
   return (
     <header className="header">
       <nav className="navbar">
@@ -48,10 +45,10 @@ const Header = () => {
             </>
           ) : (
             <>
-              <button className="button" onClick={() => openPopup("signin")}>
+              <button className="button" onClick={() => showPopup("signin")}>
                 Login
               </button>
-              <button className="button" onClick={() => openPopup("register")}>
+              <button className="button" onClick={() => showPopup("register")}>
                 Register
               </button>
             </>
@@ -59,11 +56,11 @@ const Header = () => {
         </div>
       </nav>
       {popup.isOpen && (
-        <Popup closePopup={() => dispatch(togglePopUp())}>
+        <Popup closePopup={() => dispatch(closePopup())}>
           {popup.type === "signin" ? (
-            <SignInForm closePopup={() => dispatch(togglePopUp())} />
+            <SignInForm closePopup={() => dispatch(closePopup())} />
           ) : (
-            <RegistrationForm closePopup={() => dispatch(togglePopUp())} />
+            <RegistrationForm closePopup={() => dispatch(closePopup())} />
           )}
         </Popup>
       )}

@@ -19,17 +19,18 @@ export const PopupsSlice = createSlice({
   name: "popups",
   initialState,
   reducers: {
-    togglePopUp: (state) => {
-      state.popUp.isOpen = !state.popUp.isOpen;
+    openPopup: (state, action: PayloadAction<"signin" | "register">) => {
+      state.popUp.isOpen = true;
+      state.popUp.type = action.payload;
     },
 
-    changeType: (state, action: PayloadAction<"signin" | "register">) => {
-      state.popUp.type = action.payload;
+    closePopup: (state) => {
+      state.popUp.isOpen = false;
     },
   },
 });
 
-export const { togglePopUp, changeType } = PopupsSlice.actions;
+export const { openPopup, closePopup } = PopupsSlice.actions;
 
 export const selectPopup = (state: RootState) => state.popups.popUp;
 
