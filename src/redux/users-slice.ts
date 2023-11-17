@@ -1,4 +1,3 @@
-import { IUser } from "./users-slice";
 import { createAction, createSlice } from "@reduxjs/toolkit";
 import { put, call, select } from "redux-saga/effects";
 
