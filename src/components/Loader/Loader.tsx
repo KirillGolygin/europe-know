@@ -5,7 +5,7 @@ import "./Loader.scss";
 const Loader = () => {
   return (
     <div className="loader">
-      <Oval />
+      <Oval color="black" secondaryColor="gray" />
     </div>
   );
 };
