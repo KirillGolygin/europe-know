@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/redux-hooks";
+import { useAppDispatch } from "../../redux/hooks/redux-hooks";
 
 import { saveFormData, signinUser } from "../../redux/users-slice";
 
@@ -29,9 +29,8 @@ const SignInForm = ({ closePopup }: SigInFormProps) => {
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     dispatch(saveFormData(data));
     dispatch(signinUser());
-    closePopup();
     reset();
-    console.log(data);
+    closePopup();
   };
 
   return (

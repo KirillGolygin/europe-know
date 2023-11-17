@@ -6,7 +6,7 @@ import type { RootState } from "./store";
 
 import { getUsers } from "../api";
 
-interface IUser {
+export interface IUser {
   login: string;
   password: string;
 }
@@ -27,7 +27,6 @@ const initialState: UsersState = {
 
 export function* signinUserSaga(): any {
   const { users } = yield select();
-  console.log(users);
   yield put(setCurrentUserLoading());
   try {
     const response = yield call(getUsers);
@@ -38,7 +37,6 @@ export function* signinUserSaga(): any {
         user.login === users.siginFormData.login &&
         user.password === users.siginFormData.password
     );
-    console.log(correctUser);
     yield put(setCurrentUserSuccess(correctUser));
   } catch (error) {
     yield put(setCurrentUserRejected(`Произошла ошибка: ${error}`));
@@ -65,6 +63,9 @@ export const usersSlice = createSlice({
     saveFormData: (state, action: PayloadAction<IUser>) => {
       state.siginFormData = action.payload;
     },
+    logoutUser: (state) => {
+      state.currentUser = null;
+    },
   },
 });
 
@@ -76,11 +77,15 @@ export const {
   setCurrentUserRejected,
   setCurrentUserLoading,
   saveFormData,
+  logoutUser,
 } = usersSlice.actions;
 
 export const selectFilteredCountries = (state: RootState) =>
   state.countries.filteredCountries;
-export const selectLoading = (state: RootState) => state.countries.loading;
-export const selectError = (state: RootState) => state.countries.error;
+
+export const selectCurrentUser = (state: RootState) => state.users.currentUser;
+export const selectSigninError = (state: RootState) =>
+  state.users.signinErrorMessage;
+export const selectError = (state: RootState) => state.users.error;
 
 export default usersSlice.reducer;
