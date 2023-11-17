@@ -28,6 +28,7 @@ const CountriesList = () => {
               name={country.name.common}
               capital={country.capital[0]}
               flag={country.flags}
+              favourite={country.favourite}
             />
           ))}
         </div>

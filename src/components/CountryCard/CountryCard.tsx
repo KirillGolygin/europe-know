@@ -10,9 +10,10 @@ interface CountryCardProps {
     svg: string;
     alt: string;
   };
+  favourite: boolean;
 }
 
-const CountryCard = ({ capital, name, flag }: CountryCardProps) => {
+const CountryCard = ({ capital, name, flag, favourite }: CountryCardProps) => {
   return (
     <div className="card">
       <img className="flag" src={flag.png} alt={flag.alt} />
@@ -23,7 +24,7 @@ const CountryCard = ({ capital, name, flag }: CountryCardProps) => {
             <p>Capital:</p>
             <p className="capital-name">{capital}</p>
           </div>
-          <Star />
+          <Star countryName={name} favourite={favourite} />
         </div>
       </div>
     </div>

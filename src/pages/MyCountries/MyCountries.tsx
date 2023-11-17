@@ -1,7 +1,13 @@
+import FavouritesList from "../../components/FavouritesList/FavouritesList";
+
 import "./MyCountries.scss";
 
 const MyCountries = () => {
-  return <div>MyCountries</div>;
+  return (
+    <>
+      <FavouritesList />
+    </>
+  );
 };
 
 export default MyCountries;
