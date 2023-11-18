@@ -43,6 +43,7 @@ export function* getCountriesSaga(): any {
 
     const payload = yield response.data;
     yield put(getCountriesSuccess(payload));
+    yield put(updateFavorites());
   } catch (error) {
     yield put(getCountriesRejected(`Произошла ошибка: ${error}`));
   }
@@ -79,7 +80,7 @@ export const CountriesSlice = createSlice({
       });
     },
     changeFavourites: (state, action: PayloadAction<string>) => {
-      const countryToChange = state.countries.find(
+      const countryToChange = state.filteredCountries.find(
         (country) => country.name.common === action.payload
       );
 
@@ -104,6 +105,19 @@ export const CountriesSlice = createSlice({
         state.favourits.push(countryToChange);
       }
     },
+    updateFavorites: (state) => {
+      state.filteredCountries.forEach((country) => {
+        state.favourits.forEach((fav) => {
+          if (country.name.common === fav.name.common) {
+            country.favourite = true;
+            state.favourits = state.favourits.filter(
+              (old) => old.name.common !== country.name.common
+            );
+            state.favourits.push(country);
+          }
+        });
+      });
+    },
   },
 });
 
@@ -116,6 +130,7 @@ export const {
   getCountriesRejected,
   sortCountries,
   changeFavourites,
+  updateFavorites,
 } = CountriesSlice.actions;
 
 export const selectFilteredCountries = (state: RootState) =>

@@ -2,6 +2,7 @@ import { useAppSelector, useAppDispatch } from "../../redux/hooks/redux-hooks";
 import {
   selectFilteredCountries,
   sortCountries,
+  updateFavorites,
 } from "../../redux/countries-slice";
 
 import Select, { InputActionMeta } from "react-select";
@@ -14,8 +15,10 @@ const Selector = () => {
     setTimeout(() => {
       if (value === "") {
         dispatch(sortCountries(actionMeta?.prevInputValue as string));
+        dispatch(updateFavorites());
       } else {
         dispatch(sortCountries(value));
+        dispatch(updateFavorites());
       }
     }, 500);
   };
