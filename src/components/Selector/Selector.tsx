@@ -8,9 +8,12 @@ import {
 import Select, { InputActionMeta } from "react-select";
 
 import "./Selector.scss";
+import { useNavigate } from "react-router-dom";
 
 const Selector = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const filterCountries = (value: string, actionMeta?: InputActionMeta) => {
     setTimeout(() => {
       if (value === "") {
@@ -24,6 +27,11 @@ const Selector = () => {
   };
 
   const countries = useAppSelector(selectFilteredCountries);
+
+  const redirectToInfoPage = (value: string) => {
+    filterCountries(value);
+    navigate(`/${value}`);
+  };
   const options = countries.map((country) => ({
     value: country.name.common,
     label: country.name.common,
@@ -41,7 +49,7 @@ const Selector = () => {
         onInputChange={(choice, actionMeta) =>
           filterCountries(choice, actionMeta)
         }
-        onChange={(choice) => filterCountries(choice?.value as string)}
+        onChange={(choice) => redirectToInfoPage(choice?.value as string)}
       />
     </div>
   );

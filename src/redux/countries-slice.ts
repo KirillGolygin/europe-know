@@ -140,6 +140,7 @@ export const {
   clearFavourites,
 } = CountriesSlice.actions;
 
+export const selectCountries = (state: RootState) => state.countries.countries;
 export const selectFilteredCountries = (state: RootState) =>
   state.countries.filteredCountries;
 export const selectFavourites = (state: RootState) => state.countries.favourits;
