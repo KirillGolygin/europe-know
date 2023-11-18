@@ -118,6 +118,12 @@ export const CountriesSlice = createSlice({
         });
       });
     },
+    clearFavourites: (state) => {
+      state.favourits = [];
+      state.filteredCountries.forEach((country) => {
+        country.favourite = false;
+      });
+    },
   },
 });
 
@@ -131,6 +137,7 @@ export const {
   sortCountries,
   changeFavourites,
   updateFavorites,
+  clearFavourites,
 } = CountriesSlice.actions;
 
 export const selectFilteredCountries = (state: RootState) =>
