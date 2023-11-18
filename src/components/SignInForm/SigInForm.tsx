@@ -1,6 +1,6 @@
 import { useAppDispatch } from "../../redux/hooks/redux-hooks";
 
-import { saveFormData, signinUser } from "../../redux/users-slice";
+import { IUser, saveFormData, signinUser } from "../../redux/users-slice";
 
 import FormWrap from "../FormWrap/FormWrap";
 
@@ -10,11 +10,7 @@ interface SigInFormProps {
   closePopup: () => void;
 }
 
-interface Inputs {
-  login: string;
-  password: string;
-  confirmPassword?: string;
-}
+interface Inputs extends IUser {}
 
 const SignInForm = ({ closePopup }: SigInFormProps) => {
   const dispatch = useAppDispatch();
