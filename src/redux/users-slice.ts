@@ -6,9 +6,13 @@ import type { RootState } from "./store";
 
 import { getUsers } from "../api";
 
+import type { ICountry } from "./countries-slice";
+
 export interface IUser {
+  _id: string;
   login: string;
   password: string;
+  favourits: ICountry[];
 }
 
 interface UsersState {

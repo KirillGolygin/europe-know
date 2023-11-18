@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/redux-hooks";
 
-import { selectPopup } from "../../redux/popups-slice";
+import { clearFavourites } from "../../redux/countries-slice";
 import {
   selectCurrentUser,
   logoutUser,
   selectSigninError,
   setCurrentUserLoading,
 } from "../../redux/users-slice";
-import { togglePopUp, changeType } from "../../redux/popups-slice";
+import { openPopup, closePopup, selectPopup } from "../../redux/popups-slice";
 
 import Popup from "../Popup/Popup";
 import SignInForm from "../SignInForm/SigInForm";
@@ -24,10 +24,11 @@ const Header = () => {
   const currentUser = useAppSelector(selectCurrentUser);
   const signinError = useAppSelector(selectSigninError);
 
-  const openPopup = (type: "register" | "signin") => {
-    dispatch(togglePopUp());
-    dispatch(changeType(type));
+  const logout = () => {
+    dispatch(logoutUser());
+    dispatch(clearFavourites());
   };
+  const showPopup = (type: "signin" | "register") => dispatch(openPopup(type));
   return (
     <header className="header">
       <nav className="navbar">
@@ -39,7 +40,7 @@ const Header = () => {
         <div className="btn-group">
           {currentUser ? (
             <>
-              <button className="button" onClick={() => dispatch(logoutUser())}>
+              <button className="button" onClick={() => logout()}>
                 Logout
               </button>
               <Link to={"/my-countries"}>
@@ -48,10 +49,10 @@ const Header = () => {
             </>
           ) : (
             <>
-              <button className="button" onClick={() => openPopup("signin")}>
+              <button className="button" onClick={() => showPopup("signin")}>
                 Login
               </button>
-              <button className="button" onClick={() => openPopup("register")}>
+              <button className="button" onClick={() => showPopup("register")}>
                 Register
               </button>
             </>
@@ -59,11 +60,11 @@ const Header = () => {
         </div>
       </nav>
       {popup.isOpen && (
-        <Popup closePopup={() => dispatch(togglePopUp())}>
+        <Popup closePopup={() => dispatch(closePopup())}>
           {popup.type === "signin" ? (
-            <SignInForm closePopup={() => dispatch(togglePopUp())} />
+            <SignInForm closePopup={() => dispatch(closePopup())} />
           ) : (
-            <RegistrationForm closePopup={() => dispatch(togglePopUp())} />
+            <RegistrationForm closePopup={() => dispatch(closePopup())} />
           )}
         </Popup>
       )}

@@ -26,11 +26,12 @@ const persistConfig = {
 };
 
 const persistedUserReducer = persistReducer(persistConfig, usersReducer);
+const persistedContryReducer = persistReducer(persistConfig, countriesReducer);
 
 export const store = configureStore({
   devTools: true,
   reducer: {
-    countries: countriesReducer,
+    countries: persistedContryReducer,
     popups: popupsReducer,
     users: persistedUserReducer,
   },
