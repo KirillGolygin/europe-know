@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
-
 import { useParams } from "react-router";
 
 import { getCountryInfo } from "../../api";
 
-import { ICountry } from "../../redux/countries-slice";
+import { useAppSelector, useAppDispatch } from "../../redux/hooks/redux-hooks";
+
+import {
+  ICountry,
+  pickCountry,
+  selectPickedCountry,
+} from "../../redux/countries-slice";
+import Star from "../../components/Star/Star";
+
 import "./CountryDetail.scss";
 
 interface ICountryDetail extends ICountry {
@@ -19,8 +26,9 @@ interface ICountryDetail extends ICountry {
 }
 
 const CountryDetail = () => {
-  const [countryInfo, setcountryInfo] = useState<ICountryDetail>();
+  const dispatch = useAppDispatch();
   const { country } = useParams();
+  const pickedCountry = useAppSelector(selectPickedCountry);
 
   useEffect(() => {
     if (!country) return;
@@ -41,25 +49,34 @@ const CountryDetail = () => {
         favourite: false,
         population: data.population.toLocaleString("ru"),
       };
-      setcountryInfo(prepearedData);
+
+      dispatch(pickCountry(prepearedData));
     };
 
     getInfo();
-  }, [country]);
+  }, [dispatch, country]);
 
+  if (!pickedCountry) return;
   return (
     <div className="details-container">
       <div className="text">
-        <h3 className="name"></h3>
+        <div className="name">
+          <h3 className="text"></h3>
+          <Star
+            countryName={pickedCountry.name.common}
+            favourite={pickedCountry.favourite}
+          />
+        </div>
+
         <div className="info-container">
           <p className="title">capital:</p>
-          <p className="text">{countryInfo?.capital}</p>
+          <p className="text">{pickedCountry.capital}</p>
         </div>
 
         <div className="info-container">
           <p className="title">Currencies:</p>
           <p className="text">
-            {countryInfo?.currencies.map((cur) => (
+            {pickedCountry.currencies.map((cur) => (
               <span key={cur}>{cur}</span>
             ))}
           </p>
@@ -67,13 +84,13 @@ const CountryDetail = () => {
 
         <div className="info-container">
           <p className="title">Region:</p>
-          <p className="text">{countryInfo?.region}</p>
+          <p className="text">{pickedCountry.region}</p>
         </div>
 
         <div className="info-container">
           <p className="title">Languages:</p>
           <p className="text">
-            {countryInfo?.languages.map((lang) => (
+            {pickedCountry.languages.map((lang) => (
               <span key={lang}>{lang}</span>
             ))}
           </p>
@@ -81,7 +98,7 @@ const CountryDetail = () => {
 
         <div className="info-container">
           <p className="title">Population:</p>
-          <p className="text">{countryInfo?.population}</p>
+          <p className="text">{pickedCountry.population}</p>
         </div>
       </div>
       <div className="pics"></div>

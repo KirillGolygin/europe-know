@@ -20,10 +20,22 @@ export interface ICountry {
   favourite: boolean;
 }
 
+interface IPickedCountry extends ICountry {
+  population: string;
+  coatOfArms: {
+    png: string;
+    svg: string;
+  };
+  currencies: string[];
+  region: string;
+  languages: string[];
+}
+
 interface CountriesState {
   countries: ICountry[];
   favourits: ICountry[];
   filteredCountries: ICountry[];
+  pickedCountry: IPickedCountry | null;
   loading: boolean;
   error: string | null;
 }
@@ -31,6 +43,7 @@ interface CountriesState {
 const initialState: CountriesState = {
   countries: [],
   favourits: [],
+  pickedCountry: null,
   filteredCountries: [],
   loading: false,
   error: null,
@@ -90,6 +103,9 @@ export const CountriesSlice = createSlice({
         state.favourits = state.favourits.filter(
           (country) => country.name.common !== countryToChange?.name.common
         );
+        if (state.pickedCountry) {
+          state.pickedCountry.favourite = false;
+        }
         state.filteredCountries.forEach((country) => {
           if (country.name.common === countryToChange.name.common) {
             country.favourite = false;
@@ -101,13 +117,19 @@ export const CountriesSlice = createSlice({
             country.favourite = true;
           }
         });
+        if (state.pickedCountry) {
+          state.pickedCountry.favourite = true;
+        }
         countryToChange.favourite = true;
         state.favourits.push(countryToChange);
       }
     },
     updateFavorites: (state) => {
-      state.filteredCountries.forEach((country) => {
-        state.favourits.forEach((fav) => {
+      state.favourits.forEach((fav) => {
+        if (fav.name.common === state.pickedCountry?.name.common) {
+          state.pickedCountry.favourite = true;
+        }
+        state.filteredCountries.forEach((country) => {
           if (country.name.common === fav.name.common) {
             country.favourite = true;
             state.favourits = state.favourits.filter(
@@ -124,6 +146,9 @@ export const CountriesSlice = createSlice({
         country.favourite = false;
       });
     },
+    pickCountry: (state, action: PayloadAction<IPickedCountry>) => {
+      state.pickedCountry = action.payload;
+    },
   },
 });
 
@@ -138,12 +163,15 @@ export const {
   changeFavourites,
   updateFavorites,
   clearFavourites,
+  pickCountry,
 } = CountriesSlice.actions;
 
 export const selectCountries = (state: RootState) => state.countries.countries;
 export const selectFilteredCountries = (state: RootState) =>
   state.countries.filteredCountries;
 export const selectFavourites = (state: RootState) => state.countries.favourits;
+export const selectPickedCountry = (state: RootState) =>
+  state.countries.pickedCountry;
 export const selectLoading = (state: RootState) => state.countries.loading;
 export const selectError = (state: RootState) => state.countries.error;
 
