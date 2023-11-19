@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router";
+
 import Star from "../Star/Star";
 
 import "./CountryCard.scss";
@@ -14,11 +16,14 @@ interface CountryCardProps {
 }
 
 const CountryCard = ({ capital, name, flag, favourite }: CountryCardProps) => {
+  const navigate = useNavigate();
   return (
     <div className="card">
       <img className="flag" src={flag.png} alt={flag.alt} />
       <div className="info">
-        <h2 className="name">{name}</h2>
+        <h2 className="name" onClick={() => navigate(`/${name}`)}>
+          {name}
+        </h2>
         <div className="capital-container">
           <div className="capital-text">
             <p>Capital:</p>

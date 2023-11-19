@@ -1,6 +1,5 @@
 import { useAppSelector, useAppDispatch } from "../../redux/hooks/redux-hooks";
 import {
-  pickCountry,
   selectFilteredCountries,
   sortCountries,
   updateFavorites,
