@@ -141,7 +141,7 @@ export const CountriesSlice = createSlice({
       });
     },
     clearFavourites: (state) => {
-      state.favourits = [];
+      state.favourits = initialState.favourits;
       state.filteredCountries.forEach((country) => {
         country.favourite = false;
       });
