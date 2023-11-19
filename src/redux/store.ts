@@ -1,9 +1,18 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "@redux-saga/core";
 import { takeEvery } from "redux-saga/effects";
 
 import storage from "redux-persist/lib/storage";
-import { persistReducer, persistStore } from "redux-persist";
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+  persistReducer,
+  persistStore,
+} from "redux-persist";
 
 import countriesReducer from "./countries-slice";
 import { GET_COUNTRIES, getCountriesSaga } from "./countries-slice";
@@ -20,23 +29,27 @@ function* sagas() {
   yield takeEvery(SIGNIN_USER, signinUserSaga);
 }
 
+const rootReducer = combineReducers({
+  countries: countriesReducer,
+  popups: popupsReducer,
+  users: usersReducer,
+});
+
 const persistConfig = {
   key: "root",
   storage,
 };
 
-const persistedUserReducer = persistReducer(persistConfig, usersReducer);
-const persistedContryReducer = persistReducer(persistConfig, countriesReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   devTools: true,
-  reducer: {
-    countries: persistedContryReducer,
-    popups: popupsReducer,
-    users: persistedUserReducer,
-  },
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
       thunk: false,
     }).concat(sagaMiddleware),
 });
