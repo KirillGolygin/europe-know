@@ -20,8 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Main />} />
-          <Route path="/details" element={<CountryDetail />} />
-
+          <Route path="/:country" element={<CountryDetail />} />
           <Route
             path="/my-countries"
             element={

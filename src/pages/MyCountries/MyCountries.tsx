@@ -9,7 +9,7 @@ import "./MyCountries.scss";
 const MyCountries = () => {
   const favourites = useAppSelector(selectFavourites);
   return (
-    <div>
+    <div className="myCountries-wrapper">
       {favourites.length !== 0 ? (
         <FavouritesList />
       ) : (
