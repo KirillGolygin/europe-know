@@ -9,6 +9,7 @@ import {
   ICountry,
   pickCountry,
   selectPickedCountry,
+  updateFavorites,
 } from "../../redux/countries-slice";
 import Star from "../../components/Star/Star";
 
@@ -46,17 +47,19 @@ const CountryDetail = () => {
         ...data,
         currencies: Object.keys(data.currencies),
         languages: languages,
-        favourite: false,
         population: data.population.toLocaleString("ru"),
       };
 
       dispatch(pickCountry(prepearedData));
+      dispatch(updateFavorites());
     };
 
     getInfo();
   }, [dispatch, country]);
 
   if (!pickedCountry) return;
+
+  console.log(pickedCountry.favourite);
   return (
     <div className="details-container">
       <div className="info-container">
