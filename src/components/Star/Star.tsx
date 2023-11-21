@@ -6,7 +6,7 @@ import { selectCurrentUser } from "../../redux/users-slice";
 import { openPopup } from "../../redux/popups-slice";
 import { changeFavourites } from "../../redux/countries-slice";
 
-import StarIcon from "../../assets/svg/star.svg?react";
+import StarIcon from "../../assets/svg/star.svg";
 
 import cn from "classnames";
 import "./Star.scss";
@@ -31,7 +31,9 @@ const Star = ({ countryName, favourite }: StarProps) => {
           : () => changeFavouriteStatus(countryName)
       }
     >
-      <StarIcon className={cn("star-icon", { ["filled"]: favourite })} />
+      <div className={cn("star-icon", { ["filled"]: favourite })}>
+        <StarIcon />
+      </div>
     </div>
   );
 };

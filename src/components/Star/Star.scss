@@ -3,12 +3,19 @@
     cursor: pointer;
 
     .star-icon {
-        &:hover {
-            fill: black;
-        }
-    }
-}
+         &:first-child {
+            fill: transparent;
 
-.filled {
-    fill: black
+            &:hover {
+                fill: black;
+            }
+        }
+    
+    }
+
+    .filled  {
+    &:first-child {
+        fill: black;
+    };
+}
 }

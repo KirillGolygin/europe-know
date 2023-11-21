@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
-import { useAppDispatch } from "../../redux/hooks/redux-hooks";
-import { getCountries } from "../../redux/countries-slice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/redux-hooks";
+import { getCountries, selectLoading } from "../../redux/countries-slice";
 
 import CountriesList from "../../components/CountriesList/CountriesList";
 import Selector from "../../components/Selector/Selector";
@@ -9,6 +9,7 @@ import Selector from "../../components/Selector/Selector";
 import "./Main.scss";
 
 const Main = () => {
+  const loadingCountries = useAppSelector(selectLoading);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -18,7 +19,7 @@ const Main = () => {
   return (
     <div className="main-wrapper">
       <Selector />
-      <CountriesList />
+      <CountriesList loading={loadingCountries} />
     </div>
   );
 };
