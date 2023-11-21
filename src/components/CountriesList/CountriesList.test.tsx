@@ -4,8 +4,6 @@ import { render } from "@testing-library/react";
 import * as reduxHooks from "../../redux/hooks/redux-hooks";
 import CountriesList from "./CountriesList";
 
-import { getAllCountries } from "../../api";
-
 vi.mock("../../redux/hooks/redux-hooks");
 vi.mock("react-router");
 
