@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/redux-hooks";
+import { useAppDispatch } from "../../redux/hooks/redux-hooks";
 
 import { clearFavourites } from "../../redux/countries-slice";
 import {
-  selectCurrentUser,
   logoutUser,
-  selectSigninError,
   setCurrentUserLoading,
+  IUser,
 } from "../../redux/users-slice";
-import { openPopup, closePopup, selectPopup } from "../../redux/popups-slice";
+import { openPopup, closePopup } from "../../redux/popups-slice";
 
 import Popup from "../Popup/Popup";
 import SignInForm from "../SignInForm/SigInForm";
@@ -18,11 +17,17 @@ import SigninError from "../SigninError/SigninError";
 
 import "./Header.scss";
 
-const Header = () => {
+interface HeaderProps {
+  currentUser?: IUser | null;
+  popup: {
+    type: "signin" | "register";
+    isOpen: boolean;
+  };
+  signinError?: string | null;
+}
+
+const Header = ({ currentUser, popup, signinError }: HeaderProps) => {
   const dispatch = useAppDispatch();
-  const popup = useAppSelector(selectPopup);
-  const currentUser = useAppSelector(selectCurrentUser);
-  const signinError = useAppSelector(selectSigninError);
 
   const logout = () => {
     dispatch(logoutUser());
