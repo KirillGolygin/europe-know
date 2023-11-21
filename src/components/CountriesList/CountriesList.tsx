@@ -11,9 +11,12 @@ import {
 
 import "./CountriesList.scss";
 
-const CountriesList = () => {
+interface CountriesListProps {
+  loading: boolean;
+}
+
+const CountriesList = ({ loading }: CountriesListProps) => {
   const countries = useAppSelector(selectFilteredCountries);
-  const loading = useAppSelector(selectLoading);
   const error = useAppSelector(selectError);
 
   return (

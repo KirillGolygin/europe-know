@@ -1,5 +1,3 @@
-import { getAllCountries } from "../../api";
-
 import { expect, it, vi } from "vitest";
 import { render } from "@testing-library/react";
 
@@ -11,7 +9,18 @@ vi.mock("react-router");
 
 const mockedUseSelector = vi.spyOn(reduxHooks, "useAppSelector");
 
-const { data } = await getAllCountries();
+const cards = [
+  {
+    name: { common: "test" },
+    capital: "test",
+    flags: { png: "https://flagcdn.com/w320/al.png" },
+  },
+  {
+    name: { common: "test" },
+    capital: "test",
+    flags: { png: "https://flagcdn.com/w320/al.png" },
+  },
+];
 
 it("render empty favourites list", () => {
   mockedUseSelector.mockReturnValue([]);
@@ -21,7 +30,7 @@ it("render empty favourites list", () => {
 });
 
 it("render favourites list with cards", () => {
-  mockedUseSelector.mockReturnValue(data);
+  mockedUseSelector.mockReturnValue(cards);
 
   const component = render(<FavouritesList />);
 
