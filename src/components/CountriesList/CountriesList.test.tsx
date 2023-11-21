@@ -1,4 +1,4 @@
-import { expect, it, vi, describe } from "vitest";
+import { expect, it, vi } from "vitest";
 import { render } from "@testing-library/react";
 
 import * as reduxHooks from "../../redux/hooks/redux-hooks";
