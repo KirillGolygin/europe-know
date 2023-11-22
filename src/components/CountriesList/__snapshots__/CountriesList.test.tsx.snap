@@ -21,7 +21,7 @@ exports[`render cards 1`] = `
             <h2
               class="name"
             >
-              test
+              test1
             </h2>
             <div
               class="capital-container"
@@ -84,7 +84,7 @@ exports[`render cards 1`] = `
             <h2
               class="name"
             >
-              test
+              test2
             </h2>
             <div
               class="capital-container"
@@ -154,7 +154,7 @@ exports[`render cards 1`] = `
           <h2
             class="name"
           >
-            test
+            test1
           </h2>
           <div
             class="capital-container"
@@ -217,7 +217,7 @@ exports[`render cards 1`] = `
           <h2
             class="name"
           >
-            test
+            test2
           </h2>
           <div
             class="capital-container"

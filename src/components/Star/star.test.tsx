@@ -31,7 +31,6 @@ it("call open popup if not signed in", () => {
   mockedUseSelector.mockReturnValue(null);
 
   const mockedOpenPopup = vi.spyOn(popupActions, "openPopup");
-  // const mockedChangeFavurites = vi.spyOn(CuntriesActions, "changeFavourites");
 
   render(<Star countryName="Russia" favourite={false} />);
 
