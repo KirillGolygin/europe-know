@@ -147,12 +147,14 @@ exports[`render header with Register popup 1`] = `
                   <label>
                     login
                     <input
+                      data-testid="login"
                       name="login"
                     />
                   </label>
                   <label>
                     password
                     <input
+                      data-testid="password"
                       name="password"
                       type="password"
                     />
@@ -160,6 +162,7 @@ exports[`render header with Register popup 1`] = `
                   <label>
                     Confirm password
                     <input
+                      data-testid="confirm-password"
                       name="confirmPassword"
                       type="password"
                     />
@@ -235,12 +238,14 @@ exports[`render header with Register popup 1`] = `
                 <label>
                   login
                   <input
+                    data-testid="login"
                     name="login"
                   />
                 </label>
                 <label>
                   password
                   <input
+                    data-testid="password"
                     name="password"
                     type="password"
                   />
@@ -248,6 +253,7 @@ exports[`render header with Register popup 1`] = `
                 <label>
                   Confirm password
                   <input
+                    data-testid="confirm-password"
                     name="confirmPassword"
                     type="password"
                   />

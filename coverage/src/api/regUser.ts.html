@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">26.92% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/26</span>
+                <span class='fraction'>26/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">26.92% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/26</span>
+                <span class='fraction'>26/26</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -95,51 +95,51 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import axios from "axios";
 &nbsp;
 const projectid = import.meta.env.VITE_SANITY_PROJECT_ID;
 const sanityToken = import.meta.env.VITE_SANITY_API_TOKEN;
 &nbsp;
-export const regUser = <span class="fstat-no" title="function not covered" >(data: { login: string; password: string }) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >  axios.post(</span>
-<span class="cstat-no" title="statement not covered" >    `https://${projectid}.api.sanity.io/v1/data/mutate/production`,</span>
-<span class="cstat-no" title="statement not covered" >    {</span>
-<span class="cstat-no" title="statement not covered" >      mutations: [</span>
-<span class="cstat-no" title="statement not covered" >        {</span>
-<span class="cstat-no" title="statement not covered" >          create: {</span>
-<span class="cstat-no" title="statement not covered" >            _type: "users",</span>
-<span class="cstat-no" title="statement not covered" >            login: data.login,</span>
-<span class="cstat-no" title="statement not covered" >            password: data.password,</span>
-<span class="cstat-no" title="statement not covered" >          },</span>
-<span class="cstat-no" title="statement not covered" >        },</span>
-<span class="cstat-no" title="statement not covered" >      ],</span>
-<span class="cstat-no" title="statement not covered" >    },</span>
-<span class="cstat-no" title="statement not covered" >    {</span>
-<span class="cstat-no" title="statement not covered" >      headers: {</span>
-<span class="cstat-no" title="statement not covered" >        "Content-Type": "application/json",</span>
-<span class="cstat-no" title="statement not covered" >        Authorization: `Bearer ${sanityToken}`,</span>
-<span class="cstat-no" title="statement not covered" >      },</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+export const regUser = (data: { login: string; password: string }) =&gt;
+  axios.post(
+    `https://${projectid}.api.sanity.io/v1/data/mutate/production`,
+    {
+      mutations: [
+        {
+          create: {
+            _type: "users",
+            login: data.login,
+            password: data.password,
+          },
+        },
+      ],
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sanityToken}`,
+      },
+    }
   );
 &nbsp;</pre></td></tr></table></pre>
 
@@ -148,7 +148,7 @@ export const regUser = <span class="fstat-no" title="function not covered" >(dat
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-22T14:23:48.211Z
+                at 2023-11-22T15:52:26.274Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

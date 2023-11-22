@@ -22,11 +22,10 @@ const RegistrationForm = ({ closePopup }: SigInFormProps) => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    await regUser(data);
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    regUser(data);
     closePopup();
     reset();
-    console.log(data);
   };
 
   return (
@@ -37,6 +36,7 @@ const RegistrationForm = ({ closePopup }: SigInFormProps) => {
           <label>
             login
             <input
+              data-testid="login"
               {...register("login", {
                 required: "Поле должно быть заполнено",
                 pattern: {
@@ -45,15 +45,24 @@ const RegistrationForm = ({ closePopup }: SigInFormProps) => {
                 },
               })}
             />
-            {errors.login && <p className="error">{errors.login?.message}</p>}
+            {errors.login && (
+              <p className="error" role="alert">
+                {errors.login?.message}
+              </p>
+            )}
           </label>
 
           <label>
             password
             <input
+              data-testid="password"
               type="password"
               {...register("password", {
                 required: "Поле должно быть заполнено",
+                minLength: {
+                  value: 6,
+                  message: "Пароль должен содержать более 6 символов",
+                },
                 pattern: {
                   value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/,
                   message:
@@ -62,13 +71,16 @@ const RegistrationForm = ({ closePopup }: SigInFormProps) => {
               })}
             />
             {errors.password && (
-              <p className="error">{errors.password.message}</p>
+              <p className="error" role="alert">
+                {errors.password.message}
+              </p>
             )}
           </label>
 
           <label>
             Confirm password
             <input
+              data-testid="confirm-password"
               type="password"
               {...register("confirmPassword", {
                 required: "Поле должно быть заполнено",
@@ -80,7 +92,9 @@ const RegistrationForm = ({ closePopup }: SigInFormProps) => {
               })}
             />
             {errors.confirmPassword && (
-              <p className="error">{errors.confirmPassword.message}</p>
+              <p className="error" role="alert">
+                {errors.confirmPassword.message}
+              </p>
             )}
           </label>
         </div>
