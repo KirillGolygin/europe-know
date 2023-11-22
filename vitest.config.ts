@@ -14,6 +14,7 @@ export default mergeConfig(
       globals: true,
       environment: "jsdom",
       exclude: ["*.svg?component"],
+      setupFiles: "/src/setupTests.ts",
     },
   })
 );

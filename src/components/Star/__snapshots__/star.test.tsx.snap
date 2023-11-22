@@ -5,11 +5,12 @@ exports[`renders correctly when favourite = false 1`] = `
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
+      <button
         class="star"
       >
         <div
           class="star-icon"
+          data-testid="star-icon"
         >
           <svg
             enable-background="new 0 0 512 512"
@@ -33,15 +34,16 @@ exports[`renders correctly when favourite = false 1`] = `
             />
           </svg>
         </div>
-      </div>
+      </button>
     </div>
   </body>,
   "container": <div>
-    <div
+    <button
       class="star"
     >
       <div
         class="star-icon"
+        data-testid="star-icon"
       >
         <svg
           enable-background="new 0 0 512 512"
@@ -65,7 +67,7 @@ exports[`renders correctly when favourite = false 1`] = `
           />
         </svg>
       </div>
-    </div>
+    </button>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -126,11 +128,12 @@ exports[`renders correctly when favourite = true 1`] = `
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
+      <button
         class="star"
       >
         <div
           class="star-icon filled"
+          data-testid="star-icon"
         >
           <svg
             enable-background="new 0 0 512 512"
@@ -154,15 +157,16 @@ exports[`renders correctly when favourite = true 1`] = `
             />
           </svg>
         </div>
-      </div>
+      </button>
     </div>
   </body>,
   "container": <div>
-    <div
+    <button
       class="star"
     >
       <div
         class="star-icon filled"
+        data-testid="star-icon"
       >
         <svg
           enable-background="new 0 0 512 512"
@@ -186,7 +190,7 @@ exports[`renders correctly when favourite = true 1`] = `
           />
         </svg>
       </div>
-    </div>
+    </button>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

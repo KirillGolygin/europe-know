@@ -23,7 +23,7 @@ const Star = ({ countryName, favourite }: StarProps) => {
 
   const currentUser = useAppSelector(selectCurrentUser);
   return (
-    <div
+    <button
       className="star"
       onClick={
         !currentUser
@@ -31,10 +31,13 @@ const Star = ({ countryName, favourite }: StarProps) => {
           : () => changeFavouriteStatus(countryName)
       }
     >
-      <div className={cn("star-icon", { ["filled"]: favourite })}>
+      <div
+        data-testid="star-icon"
+        className={cn("star-icon", { ["filled"]: favourite })}
+      >
         <StarIcon />
       </div>
-    </div>
+    </button>
   );
 };
 

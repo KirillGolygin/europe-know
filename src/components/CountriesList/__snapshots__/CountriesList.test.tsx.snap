@@ -38,11 +38,12 @@ exports[`render cards 1`] = `
                   t
                 </p>
               </div>
-              <div
+              <button
                 class="star"
               >
                 <div
                   class="star-icon"
+                  data-testid="star-icon"
                 >
                   <svg
                     enable-background="new 0 0 512 512"
@@ -66,7 +67,7 @@ exports[`render cards 1`] = `
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>
@@ -100,11 +101,12 @@ exports[`render cards 1`] = `
                   t
                 </p>
               </div>
-              <div
+              <button
                 class="star"
               >
                 <div
                   class="star-icon"
+                  data-testid="star-icon"
                 >
                   <svg
                     enable-background="new 0 0 512 512"
@@ -128,7 +130,7 @@ exports[`render cards 1`] = `
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>
@@ -169,11 +171,12 @@ exports[`render cards 1`] = `
                 t
               </p>
             </div>
-            <div
+            <button
               class="star"
             >
               <div
                 class="star-icon"
+                data-testid="star-icon"
               >
                 <svg
                   enable-background="new 0 0 512 512"
@@ -197,7 +200,7 @@ exports[`render cards 1`] = `
                   />
                 </svg>
               </div>
-            </div>
+            </button>
           </div>
         </div>
       </div>
@@ -231,11 +234,12 @@ exports[`render cards 1`] = `
                 t
               </p>
             </div>
-            <div
+            <button
               class="star"
             >
               <div
                 class="star-icon"
+                data-testid="star-icon"
               >
                 <svg
                   enable-background="new 0 0 512 512"
@@ -259,7 +263,7 @@ exports[`render cards 1`] = `
                   />
                 </svg>
               </div>
-            </div>
+            </button>
           </div>
         </div>
       </div>
