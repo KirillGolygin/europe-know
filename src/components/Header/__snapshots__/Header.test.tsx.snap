@@ -128,9 +128,11 @@ exports[`render header with Register popup 1`] = `
         </nav>
         <div
           class="popup"
+          data-testid="popup"
         >
           <div
             class="popup-content"
+            data-testid="popup-content"
           >
             <div
               class="form-container"
@@ -214,9 +216,11 @@ exports[`render header with Register popup 1`] = `
       </nav>
       <div
         class="popup"
+        data-testid="popup"
       >
         <div
           class="popup-content"
+          data-testid="popup-content"
         >
           <div
             class="form-container"
@@ -494,9 +498,11 @@ exports[`render header with signin popup 1`] = `
         </nav>
         <div
           class="popup"
+          data-testid="popup"
         >
           <div
             class="popup-content"
+            data-testid="popup-content"
           >
             <div
               class="form-container"
@@ -559,9 +565,11 @@ exports[`render header with signin popup 1`] = `
       </nav>
       <div
         class="popup"
+        data-testid="popup"
       >
         <div
           class="popup-content"
+          data-testid="popup-content"
         >
           <div
             class="form-container"

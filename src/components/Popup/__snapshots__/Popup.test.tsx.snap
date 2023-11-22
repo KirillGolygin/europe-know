@@ -7,9 +7,11 @@ exports[`render Popup 1`] = `
     <div>
       <div
         class="popup"
+        data-testid="popup"
       >
         <div
           class="popup-content"
+          data-testid="popup-content"
         >
           <div>
             test
@@ -21,9 +23,11 @@ exports[`render Popup 1`] = `
   "container": <div>
     <div
       class="popup"
+      data-testid="popup"
     >
       <div
         class="popup-content"
+        data-testid="popup-content"
       >
         <div>
           test
