@@ -517,12 +517,14 @@ exports[`render header with signin popup 1`] = `
                   <label>
                     login
                     <input
+                      data-testid="login"
                       name="login"
                     />
                   </label>
                   <label>
                     password
                     <input
+                      data-testid="password"
                       name="password"
                       type="password"
                     />
@@ -584,12 +586,14 @@ exports[`render header with signin popup 1`] = `
                 <label>
                   login
                   <input
+                    data-testid="login"
                     name="login"
                   />
                 </label>
                 <label>
                   password
                   <input
+                    data-testid="password"
                     name="password"
                     type="password"
                   />
