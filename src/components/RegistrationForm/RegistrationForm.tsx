@@ -40,7 +40,7 @@ const RegistrationForm = ({ closePopup }: SigInFormProps) => {
               {...register("login", {
                 required: "Поле должно быть заполнено",
                 pattern: {
-                  value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                  value: /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/,
                   message: "Логин должен являться почтой",
                 },
               })}
