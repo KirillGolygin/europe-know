@@ -33,7 +33,7 @@ const Star = ({ countryName, favourite }: StarProps) => {
     >
       <div
         data-testid="star-icon"
-        className={cn("star-icon", { ["filled"]: favourite })}
+        className={cn("star-icon", { ["filled"]: favourite && currentUser })}
       >
         <StarIcon />
       </div>

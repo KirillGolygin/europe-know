@@ -5,7 +5,6 @@ import { BrowserRouter } from "react-router-dom";
 import * as reduxHooks from "../../redux/hooks/redux-hooks";
 import * as popupActions from "../../redux/popups-slice";
 import * as usersActions from "../../redux/users-slice";
-import * as CountriesActions from "../../redux/countries-slice";
 
 import Header from "./Header";
 
@@ -99,12 +98,10 @@ it("logout user by clicking logout button", () => {
   );
 
   const mockedLogout = vi.spyOn(usersActions, "logoutUser");
-  const mockedClearFavourites = vi.spyOn(CountriesActions, "clearFavourites");
 
   fireEvent.click(screen.getByRole("button", { name: "Logout" }));
   expect(dispatch).toBeCalledTimes(4);
   expect(mockedLogout).toBeCalled();
-  expect(mockedClearFavourites).toBeCalled();
 });
 
 it("check main link", () => {

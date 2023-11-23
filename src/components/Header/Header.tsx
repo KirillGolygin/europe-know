@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 import { useAppDispatch } from "../../redux/hooks/redux-hooks";
 
-import { clearFavourites } from "../../redux/countries-slice";
 import {
   logoutUser,
   loginUserLoading,
@@ -43,7 +42,6 @@ const Header = ({
 
   const logout = () => {
     dispatch(logoutUser());
-    dispatch(clearFavourites());
   };
   const showPopup = (type: "signin" | "register") => dispatch(openPopup(type));
   return (
