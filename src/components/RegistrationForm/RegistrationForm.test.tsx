@@ -2,40 +2,40 @@ import { expect, it, vi } from "vitest";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
 import * as reduxHooks from "../../redux/hooks/redux-hooks";
-import * as userActions from "../../redux/users-slice";
-import SignInForm from "./SigInForm";
+import * as api from "../../api";
+import RegistrationForm from "./RegistrationForm";
 
 vi.mock("../../redux/hooks/redux-hooks");
+vi.mock("axios");
 
 const mockedDispatch = vi.spyOn(reduxHooks, "useAppDispatch");
-const mockedSaveFormData = vi.spyOn(userActions, "saveFormData");
-const mockedSigninUser = vi.spyOn(userActions, "signinUser");
+const mockedregUser = vi.spyOn(api, "regUser");
 const closePopup = vi.fn();
 
-it("render SigninForm", () => {
+it("render RegistrationForm", () => {
   mockedDispatch.mockReturnValue(vi.fn());
 
-  const component = render(<SignInForm closePopup={closePopup} />);
+  const component = render(<RegistrationForm closePopup={closePopup} />);
   expect(component).toMatchSnapshot();
 });
 
 it("should display required error when value is invalid", async () => {
-  render(<SignInForm closePopup={closePopup} />);
+  render(<RegistrationForm closePopup={closePopup} />);
 
   fireEvent.submit(screen.getByRole("button"));
 
-  expect(await screen.findAllByRole("alert")).toHaveLength(2);
+  expect(await screen.findAllByRole("alert")).toHaveLength(3);
 
-  expect(mockedSaveFormData).not.toBeCalled();
-  expect(mockedSigninUser).not.toBeCalled();
+  expect(mockedregUser).not.toBeCalled();
   expect(closePopup).not.toBeCalled();
 
   expect(screen.getByTestId("login")).toHaveValue("");
   expect(screen.getByTestId("password")).toHaveValue("");
+  expect(screen.getByTestId("confirm-password")).toHaveValue("");
 });
 
 it("should display matching error when email is invalid", async () => {
-  render(<SignInForm closePopup={closePopup} />);
+  render(<RegistrationForm closePopup={closePopup} />);
 
   fireEvent.input(screen.getByTestId("login"), {
     target: {
@@ -49,12 +49,17 @@ it("should display matching error when email is invalid", async () => {
     },
   });
 
+  fireEvent.input(screen.getByTestId("confirm-password"), {
+    target: {
+      value: "Password1234",
+    },
+  });
+
   fireEvent.submit(screen.getByRole("button"));
 
   expect(await screen.findAllByRole("alert")).toHaveLength(1);
 
-  expect(mockedSaveFormData).not.toBeCalled();
-  expect(mockedSigninUser).not.toBeCalled();
+  expect(mockedregUser).not.toBeCalled();
   expect(closePopup).not.toBeCalled();
 
   expect(screen.getByTestId("login")).toHaveValue("test");
@@ -62,7 +67,7 @@ it("should display matching error when email is invalid", async () => {
 });
 
 it("should display min length error when password is invalid", async () => {
-  render(<SignInForm closePopup={closePopup} />);
+  render(<RegistrationForm closePopup={closePopup} />);
 
   fireEvent.input(screen.getByTestId("login"), {
     target: {
@@ -76,20 +81,26 @@ it("should display min length error when password is invalid", async () => {
     },
   });
 
+  fireEvent.input(screen.getByTestId("confirm-password"), {
+    target: {
+      value: "P4ss",
+    },
+  });
+
   fireEvent.submit(screen.getByRole("button"));
 
   expect(await screen.findAllByRole("alert")).toHaveLength(1);
 
-  expect(mockedSaveFormData).not.toBeCalled();
-  expect(mockedSigninUser).not.toBeCalled();
+  expect(mockedregUser).not.toBeCalled();
   expect(closePopup).not.toBeCalled();
 
   expect(screen.getByTestId("login")).toHaveValue("test@gmail.com");
   expect(screen.getByTestId("password")).toHaveValue("P4ss");
+  expect(screen.getByTestId("confirm-password")).toHaveValue("P4ss");
 });
 
 it("should display uppercase and number error when password is invalid", async () => {
-  render(<SignInForm closePopup={closePopup} />);
+  render(<RegistrationForm closePopup={closePopup} />);
 
   fireEvent.input(screen.getByTestId("login"), {
     target: {
@@ -103,20 +114,59 @@ it("should display uppercase and number error when password is invalid", async (
     },
   });
 
+  fireEvent.input(screen.getByTestId("confirm-password"), {
+    target: {
+      value: "asdsadasdaasd",
+    },
+  });
+
   fireEvent.submit(screen.getByRole("button"));
 
   expect(await screen.findAllByRole("alert")).toHaveLength(1);
 
-  expect(mockedSaveFormData).not.toBeCalled();
-  expect(mockedSigninUser).not.toBeCalled();
+  expect(mockedregUser).not.toBeCalled();
   expect(closePopup).not.toBeCalled();
 
   expect(screen.getByTestId("login")).toHaveValue("test@gmail.com");
   expect(screen.getByTestId("password")).toHaveValue("asdsadasdaasd");
+  expect(screen.getByTestId("confirm-password")).toHaveValue("asdsadasdaasd");
+});
+
+it("should error when password is unconfirmed", async () => {
+  render(<RegistrationForm closePopup={closePopup} />);
+
+  fireEvent.input(screen.getByTestId("login"), {
+    target: {
+      value: "test@gmail.com",
+    },
+  });
+
+  fireEvent.input(screen.getByTestId("password"), {
+    target: {
+      value: "Password123",
+    },
+  });
+
+  fireEvent.input(screen.getByTestId("confirm-password"), {
+    target: {
+      value: "pasdasdSA12",
+    },
+  });
+
+  fireEvent.submit(screen.getByRole("button"));
+
+  expect(await screen.findAllByRole("alert")).toHaveLength(1);
+
+  expect(mockedregUser).not.toBeCalled();
+  expect(closePopup).not.toBeCalled();
+
+  expect(screen.getByTestId("login")).toHaveValue("test@gmail.com");
+  expect(screen.getByTestId("password")).toHaveValue("Password123");
+  expect(screen.getByTestId("confirm-password")).toHaveValue("pasdasdSA12");
 });
 
 it("should not display error when value is valid", async () => {
-  render(<SignInForm closePopup={closePopup} />);
+  render(<RegistrationForm closePopup={closePopup} />);
 
   fireEvent.input(screen.getByTestId("login"), {
     target: {
@@ -130,17 +180,19 @@ it("should not display error when value is valid", async () => {
     },
   });
 
+  fireEvent.input(screen.getByTestId("confirm-password"), {
+    target: {
+      value: "P4assword",
+    },
+  });
+
   fireEvent.submit(screen.getByRole("button"));
 
   await waitFor(() => expect(screen.queryAllByRole("alert")).toHaveLength(0));
 
-  expect(mockedSaveFormData).toBeCalledWith({
-    login: "test@gmail.com",
-    password: "P4assword",
-  });
-  expect(mockedSigninUser).toBeCalled();
   expect(closePopup).toBeCalled();
 
   expect(screen.getByTestId("login")).toHaveValue("");
   expect(screen.getByTestId("password")).toHaveValue("");
+  expect(screen.getByTestId("confirm-password")).toHaveValue("");
 });

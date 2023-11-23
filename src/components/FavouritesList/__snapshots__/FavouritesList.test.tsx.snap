@@ -90,7 +90,7 @@ exports[`render favourites list with cards 1`] = `
             <h2
               class="name"
             >
-              test
+              test1
             </h2>
             <div
               class="capital-container"
@@ -107,11 +107,12 @@ exports[`render favourites list with cards 1`] = `
                   t
                 </p>
               </div>
-              <div
+              <button
                 class="star"
               >
                 <div
                   class="star-icon"
+                  data-testid="star-icon"
                 >
                   <svg
                     enable-background="new 0 0 512 512"
@@ -135,7 +136,7 @@ exports[`render favourites list with cards 1`] = `
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>
@@ -152,7 +153,7 @@ exports[`render favourites list with cards 1`] = `
             <h2
               class="name"
             >
-              test
+              test2
             </h2>
             <div
               class="capital-container"
@@ -169,11 +170,12 @@ exports[`render favourites list with cards 1`] = `
                   t
                 </p>
               </div>
-              <div
+              <button
                 class="star"
               >
                 <div
                   class="star-icon"
+                  data-testid="star-icon"
                 >
                   <svg
                     enable-background="new 0 0 512 512"
@@ -197,7 +199,7 @@ exports[`render favourites list with cards 1`] = `
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>
@@ -221,7 +223,7 @@ exports[`render favourites list with cards 1`] = `
           <h2
             class="name"
           >
-            test
+            test1
           </h2>
           <div
             class="capital-container"
@@ -238,11 +240,12 @@ exports[`render favourites list with cards 1`] = `
                 t
               </p>
             </div>
-            <div
+            <button
               class="star"
             >
               <div
                 class="star-icon"
+                data-testid="star-icon"
               >
                 <svg
                   enable-background="new 0 0 512 512"
@@ -266,7 +269,7 @@ exports[`render favourites list with cards 1`] = `
                   />
                 </svg>
               </div>
-            </div>
+            </button>
           </div>
         </div>
       </div>
@@ -283,7 +286,7 @@ exports[`render favourites list with cards 1`] = `
           <h2
             class="name"
           >
-            test
+            test2
           </h2>
           <div
             class="capital-container"
@@ -300,11 +303,12 @@ exports[`render favourites list with cards 1`] = `
                 t
               </p>
             </div>
-            <div
+            <button
               class="star"
             >
               <div
                 class="star-icon"
+                data-testid="star-icon"
               >
                 <svg
                   enable-background="new 0 0 512 512"
@@ -328,7 +332,7 @@ exports[`render favourites list with cards 1`] = `
                   />
                 </svg>
               </div>
-            </div>
+            </button>
           </div>
         </div>
       </div>

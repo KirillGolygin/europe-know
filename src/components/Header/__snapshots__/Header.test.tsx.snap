@@ -11,7 +11,14 @@ exports[`render authorized header 1`] = `
         <nav
           class="navbar"
         >
-          <h1 />
+          <h1>
+            <a
+              class="heading"
+              href="/"
+            >
+              Europe.know
+            </a>
+          </h1>
           <div
             class="btn-group"
           >
@@ -20,6 +27,15 @@ exports[`render authorized header 1`] = `
             >
               Logout
             </button>
+            <a
+              href="/my-countries"
+            >
+              <button
+                class="button"
+              >
+                My countries
+              </button>
+            </a>
           </div>
         </nav>
       </header>
@@ -32,7 +48,14 @@ exports[`render authorized header 1`] = `
       <nav
         class="navbar"
       >
-        <h1 />
+        <h1>
+          <a
+            class="heading"
+            href="/"
+          >
+            Europe.know
+          </a>
+        </h1>
         <div
           class="btn-group"
         >
@@ -41,6 +64,15 @@ exports[`render authorized header 1`] = `
           >
             Logout
           </button>
+          <a
+            href="/my-countries"
+          >
+            <button
+              class="button"
+            >
+              My countries
+            </button>
+          </a>
         </div>
       </nav>
     </header>
@@ -110,7 +142,14 @@ exports[`render header with Register popup 1`] = `
         <nav
           class="navbar"
         >
-          <h1 />
+          <h1>
+            <a
+              class="heading"
+              href="/"
+            >
+              Europe.know
+            </a>
+          </h1>
           <div
             class="btn-group"
           >
@@ -128,9 +167,11 @@ exports[`render header with Register popup 1`] = `
         </nav>
         <div
           class="popup"
+          data-testid="popup"
         >
           <div
             class="popup-content"
+            data-testid="popup-content"
           >
             <div
               class="form-container"
@@ -145,12 +186,14 @@ exports[`render header with Register popup 1`] = `
                   <label>
                     login
                     <input
+                      data-testid="login"
                       name="login"
                     />
                   </label>
                   <label>
                     password
                     <input
+                      data-testid="password"
                       name="password"
                       type="password"
                     />
@@ -158,6 +201,7 @@ exports[`render header with Register popup 1`] = `
                   <label>
                     Confirm password
                     <input
+                      data-testid="confirm-password"
                       name="confirmPassword"
                       type="password"
                     />
@@ -196,7 +240,14 @@ exports[`render header with Register popup 1`] = `
       <nav
         class="navbar"
       >
-        <h1 />
+        <h1>
+          <a
+            class="heading"
+            href="/"
+          >
+            Europe.know
+          </a>
+        </h1>
         <div
           class="btn-group"
         >
@@ -214,9 +265,11 @@ exports[`render header with Register popup 1`] = `
       </nav>
       <div
         class="popup"
+        data-testid="popup"
       >
         <div
           class="popup-content"
+          data-testid="popup-content"
         >
           <div
             class="form-container"
@@ -231,12 +284,14 @@ exports[`render header with Register popup 1`] = `
                 <label>
                   login
                   <input
+                    data-testid="login"
                     name="login"
                   />
                 </label>
                 <label>
                   password
                   <input
+                    data-testid="password"
                     name="password"
                     type="password"
                   />
@@ -244,6 +299,7 @@ exports[`render header with Register popup 1`] = `
                 <label>
                   Confirm password
                   <input
+                    data-testid="confirm-password"
                     name="confirmPassword"
                     type="password"
                   />
@@ -339,7 +395,14 @@ exports[`render header with error popup 1`] = `
         <nav
           class="navbar"
         >
-          <h1 />
+          <h1>
+            <a
+              class="heading"
+              href="/"
+            >
+              Europe.know
+            </a>
+          </h1>
           <div
             class="btn-group"
           >
@@ -379,7 +442,14 @@ exports[`render header with error popup 1`] = `
       <nav
         class="navbar"
       >
-        <h1 />
+        <h1>
+          <a
+            class="heading"
+            href="/"
+          >
+            Europe.know
+          </a>
+        </h1>
         <div
           class="btn-group"
         >
@@ -476,7 +546,14 @@ exports[`render header with signin popup 1`] = `
         <nav
           class="navbar"
         >
-          <h1 />
+          <h1>
+            <a
+              class="heading"
+              href="/"
+            >
+              Europe.know
+            </a>
+          </h1>
           <div
             class="btn-group"
           >
@@ -494,9 +571,11 @@ exports[`render header with signin popup 1`] = `
         </nav>
         <div
           class="popup"
+          data-testid="popup"
         >
           <div
             class="popup-content"
+            data-testid="popup-content"
           >
             <div
               class="form-container"
@@ -511,12 +590,14 @@ exports[`render header with signin popup 1`] = `
                   <label>
                     login
                     <input
+                      data-testid="login"
                       name="login"
                     />
                   </label>
                   <label>
                     password
                     <input
+                      data-testid="password"
                       name="password"
                       type="password"
                     />
@@ -541,7 +622,14 @@ exports[`render header with signin popup 1`] = `
       <nav
         class="navbar"
       >
-        <h1 />
+        <h1>
+          <a
+            class="heading"
+            href="/"
+          >
+            Europe.know
+          </a>
+        </h1>
         <div
           class="btn-group"
         >
@@ -559,9 +647,11 @@ exports[`render header with signin popup 1`] = `
       </nav>
       <div
         class="popup"
+        data-testid="popup"
       >
         <div
           class="popup-content"
+          data-testid="popup-content"
         >
           <div
             class="form-container"
@@ -576,12 +666,14 @@ exports[`render header with signin popup 1`] = `
                 <label>
                   login
                   <input
+                    data-testid="login"
                     name="login"
                   />
                 </label>
                 <label>
                   password
                   <input
+                    data-testid="password"
                     name="password"
                     type="password"
                   />

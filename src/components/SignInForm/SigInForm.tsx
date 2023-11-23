@@ -37,6 +37,7 @@ const SignInForm = ({ closePopup }: SigInFormProps) => {
           <label>
             login
             <input
+              data-testid="login"
               {...register("login", {
                 required: "Поле должно быть заполнено",
                 pattern: {
@@ -45,12 +46,17 @@ const SignInForm = ({ closePopup }: SigInFormProps) => {
                 },
               })}
             />
-            {errors.login && <p className="error">{errors.login?.message}</p>}
+            {errors.login && (
+              <p role="alert" className="error">
+                {errors.login?.message}
+              </p>
+            )}
           </label>
 
           <label>
             password
             <input
+              data-testid="password"
               type="password"
               {...register("password", {
                 required: "Поле должно быть заполнено",
@@ -66,7 +72,9 @@ const SignInForm = ({ closePopup }: SigInFormProps) => {
               })}
             />
             {errors.password && (
-              <p className="error">{errors.password.message}</p>
+              <p className="error" role="alert">
+                {errors.password.message}
+              </p>
             )}
           </label>
         </div>

@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`render SigninForm 1`] = `
+exports[`render RegistrationForm 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
@@ -9,7 +9,7 @@ exports[`render SigninForm 1`] = `
         class="form-container"
       >
         <h3>
-          Sign in
+          Register
         </h3>
         <form>
           <div
@@ -30,11 +30,19 @@ exports[`render SigninForm 1`] = `
                 type="password"
               />
             </label>
+            <label>
+              Confirm password
+              <input
+                data-testid="confirm-password"
+                name="confirmPassword"
+                type="password"
+              />
+            </label>
           </div>
           <button
             type="submit"
           >
-            Sign in
+            Register
           </button>
         </form>
       </div>
@@ -45,7 +53,7 @@ exports[`render SigninForm 1`] = `
       class="form-container"
     >
       <h3>
-        Sign in
+        Register
       </h3>
       <form>
         <div
@@ -66,11 +74,19 @@ exports[`render SigninForm 1`] = `
               type="password"
             />
           </label>
+          <label>
+            Confirm password
+            <input
+              data-testid="confirm-password"
+              name="confirmPassword"
+              type="password"
+            />
+          </label>
         </div>
         <button
           type="submit"
         >
-          Sign in
+          Register
         </button>
       </form>
     </div>

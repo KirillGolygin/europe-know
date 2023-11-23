@@ -10,12 +10,12 @@ vi.mock("react-router");
 const mockedUseSelector = vi.spyOn(reduxHooks, "useAppSelector");
 const cards = [
   {
-    name: { common: "test" },
+    name: { common: "test1" },
     capital: "test",
     flags: { png: "https://flagcdn.com/w320/al.png" },
   },
   {
-    name: { common: "test" },
+    name: { common: "test2" },
     capital: "test",
     flags: { png: "https://flagcdn.com/w320/al.png" },
   },
