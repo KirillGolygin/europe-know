@@ -105,7 +105,6 @@ it("logout user by clicking logout button", () => {
   expect(dispatch).toBeCalledTimes(4);
   expect(mockedLogout).toBeCalled();
   expect(mockedClearFavourites).toBeCalled();
-  screen.debug();
 });
 
 it("check main link", () => {

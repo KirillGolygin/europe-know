@@ -1,0 +1,39 @@
+.succssed-popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.50);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+}
+
+.succssed-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+    width: 500px;
+    padding: 37px 25px 30px 25px;
+    background-color: #fff;
+    border-radius: 10px;
+    color: #252525;
+
+    h5 {
+        font-size: 24px;
+    }
+
+    button {
+        width: 133px;
+        padding: 7px 30px;
+        border: none;
+        border-radius: 15px;
+        background: #D9D9D9;
+        font-size: 20px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+}

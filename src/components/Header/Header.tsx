@@ -6,6 +6,7 @@ import { clearFavourites } from "../../redux/countries-slice";
 import {
   logoutUser,
   setCurrentUserLoading,
+  toggleRegisterStatus,
   IUser,
 } from "../../redux/users-slice";
 import { openPopup, closePopup } from "../../redux/popups-slice";
@@ -14,6 +15,7 @@ import Popup from "../Popup/Popup";
 import SignInForm from "../SignInForm/SigInForm";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
 import SigninError from "../SigninError/SigninError";
+import RegisterSuccessed from "../RegisterSuccessed/RegisterSuccessed";
 
 import "./Header.scss";
 
@@ -24,9 +26,15 @@ interface HeaderProps {
     isOpen: boolean;
   };
   signinError?: string | null;
+  regStatus?: boolean;
 }
 
-const Header = ({ currentUser, popup, signinError }: HeaderProps) => {
+const Header = ({
+  currentUser,
+  popup,
+  signinError,
+  regStatus,
+}: HeaderProps) => {
   const dispatch = useAppDispatch();
 
   const logout = () => {
@@ -69,7 +77,10 @@ const Header = ({ currentUser, popup, signinError }: HeaderProps) => {
           {popup.type === "signin" ? (
             <SignInForm closePopup={() => dispatch(closePopup())} />
           ) : (
-            <RegistrationForm closePopup={() => dispatch(closePopup())} />
+            <RegistrationForm
+              toggleRegisterStatus={() => dispatch(toggleRegisterStatus(true))}
+              closePopup={() => dispatch(closePopup())}
+            />
           )}
         </Popup>
       )}
@@ -78,6 +89,13 @@ const Header = ({ currentUser, popup, signinError }: HeaderProps) => {
         <SigninError
           closePopup={() => dispatch(setCurrentUserLoading())}
           errorMessage={signinError}
+        />
+      )}
+
+      {regStatus && (
+        <RegisterSuccessed
+          showSigninPopup={() => showPopup("signin")}
+          closePopup={() => dispatch(toggleRegisterStatus(false))}
         />
       )}
     </header>

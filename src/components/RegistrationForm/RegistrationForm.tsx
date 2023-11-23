@@ -5,6 +5,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 interface SigInFormProps {
   closePopup: () => void;
+  toggleRegisterStatus: () => void;
 }
 
 interface Inputs {
@@ -13,7 +14,10 @@ interface Inputs {
   confirmPassword: string;
 }
 
-const RegistrationForm = ({ closePopup }: SigInFormProps) => {
+const RegistrationForm = ({
+  closePopup,
+  toggleRegisterStatus,
+}: SigInFormProps) => {
   const {
     register,
     watch,
@@ -26,6 +30,7 @@ const RegistrationForm = ({ closePopup }: SigInFormProps) => {
     regUser(data);
     closePopup();
     reset();
+    toggleRegisterStatus();
   };
 
   return (

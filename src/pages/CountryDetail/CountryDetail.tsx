@@ -59,7 +59,6 @@ const CountryDetail = () => {
 
   if (!pickedCountry) return;
 
-  console.log(pickedCountry.favourite);
   return (
     <div className="details-container">
       <div className="info-container">

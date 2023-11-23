@@ -15,12 +15,16 @@ const closePopup = vi.fn();
 it("render RegistrationForm", () => {
   mockedDispatch.mockReturnValue(vi.fn());
 
-  const component = render(<RegistrationForm closePopup={closePopup} />);
+  const component = render(
+    <RegistrationForm toggleRegisterStatus={vi.fn()} closePopup={closePopup} />
+  );
   expect(component).toMatchSnapshot();
 });
 
 it("should display required error when value is invalid", async () => {
-  render(<RegistrationForm closePopup={closePopup} />);
+  render(
+    <RegistrationForm toggleRegisterStatus={vi.fn()} closePopup={closePopup} />
+  );
 
   fireEvent.submit(screen.getByRole("button"));
 
@@ -35,7 +39,9 @@ it("should display required error when value is invalid", async () => {
 });
 
 it("should display matching error when email is invalid", async () => {
-  render(<RegistrationForm closePopup={closePopup} />);
+  render(
+    <RegistrationForm toggleRegisterStatus={vi.fn()} closePopup={closePopup} />
+  );
 
   fireEvent.input(screen.getByTestId("login"), {
     target: {
@@ -67,7 +73,9 @@ it("should display matching error when email is invalid", async () => {
 });
 
 it("should display min length error when password is invalid", async () => {
-  render(<RegistrationForm closePopup={closePopup} />);
+  render(
+    <RegistrationForm toggleRegisterStatus={vi.fn()} closePopup={closePopup} />
+  );
 
   fireEvent.input(screen.getByTestId("login"), {
     target: {
@@ -100,7 +108,9 @@ it("should display min length error when password is invalid", async () => {
 });
 
 it("should display uppercase and number error when password is invalid", async () => {
-  render(<RegistrationForm closePopup={closePopup} />);
+  render(
+    <RegistrationForm toggleRegisterStatus={vi.fn()} closePopup={closePopup} />
+  );
 
   fireEvent.input(screen.getByTestId("login"), {
     target: {
@@ -133,7 +143,9 @@ it("should display uppercase and number error when password is invalid", async (
 });
 
 it("should error when password is unconfirmed", async () => {
-  render(<RegistrationForm closePopup={closePopup} />);
+  render(
+    <RegistrationForm toggleRegisterStatus={vi.fn()} closePopup={closePopup} />
+  );
 
   fireEvent.input(screen.getByTestId("login"), {
     target: {
@@ -166,7 +178,9 @@ it("should error when password is unconfirmed", async () => {
 });
 
 it("should not display error when value is valid", async () => {
-  render(<RegistrationForm closePopup={closePopup} />);
+  render(
+    <RegistrationForm toggleRegisterStatus={vi.fn()} closePopup={closePopup} />
+  );
 
   fireEvent.input(screen.getByTestId("login"), {
     target: {

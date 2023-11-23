@@ -19,6 +19,7 @@ interface UsersState {
   currentUser: IUser | null;
   siginFormData: IUser | null;
   signinErrorMessage: string | null;
+  registerSuccessed: boolean;
   error: string | null;
 }
 
@@ -27,6 +28,7 @@ const initialState: UsersState = {
   siginFormData: null,
   signinErrorMessage: null,
   error: null,
+  registerSuccessed: false,
 };
 
 export function* signinUserSaga(): any {
@@ -70,6 +72,9 @@ export const usersSlice = createSlice({
     logoutUser: (state) => {
       state.currentUser = null;
     },
+    toggleRegisterStatus: (state, action: PayloadAction<boolean>) => {
+      state.registerSuccessed = action.payload;
+    },
   },
 });
 
@@ -82,6 +87,7 @@ export const {
   setCurrentUserLoading,
   saveFormData,
   logoutUser,
+  toggleRegisterStatus,
 } = usersSlice.actions;
 
 export const selectFilteredCountries = (state: RootState) =>
@@ -91,5 +97,7 @@ export const selectCurrentUser = (state: RootState) => state.users.currentUser;
 export const selectSigninError = (state: RootState) =>
   state.users.signinErrorMessage;
 export const selectError = (state: RootState) => state.users.error;
+export const selectRegisterSuccessed = (state: RootState) =>
+  state.users.registerSuccessed;
 
 export default usersSlice.reducer;
