@@ -1,12 +1,12 @@
-import { useAppDispatch } from "../../redux/hooks/redux-hooks";
+import { useAppDispatch } from "../../../redux/hooks/redux-hooks";
 
-import { saveFormData, signinUser } from "../../redux/users-slice";
-
-import FormWrap from "../FormWrap/FormWrap";
+import { saveFormData, signinUser } from "../../../redux/users-slice";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import type { IUser } from "../../interfaces/user";
+import type { IUser } from "../../../interfaces/user";
+
+import "../Form.scss";
 
 interface SigInFormProps {
   closePopup: () => void;
@@ -32,7 +32,7 @@ const SignInForm = ({ closePopup }: SigInFormProps) => {
   };
 
   return (
-    <FormWrap>
+    <div className="form-container">
       <h3>Sign in</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="inputs-container">
@@ -82,7 +82,7 @@ const SignInForm = ({ closePopup }: SigInFormProps) => {
         </div>
         <button type="submit">Sign in</button>
       </form>
-    </FormWrap>
+    </div>
   );
 };
 

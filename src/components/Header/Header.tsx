@@ -11,8 +11,8 @@ import {
 import { openPopup, closePopup } from "../../redux/popups-slice";
 
 import Popup from "../Popup/Popup";
-import SignInForm from "../SignInForm/SigInForm";
-import RegistrationForm from "../RegistrationForm/RegistrationForm";
+import SignInForm from "../Forms/SignInForm/SigInForm";
+import RegistrationForm from "../Forms/RegistrationForm/RegistrationForm";
 import SigninError from "../SigninError/SigninError";
 import RegisterSuccessed from "../RegisterSuccessed/RegisterSuccessed";
 

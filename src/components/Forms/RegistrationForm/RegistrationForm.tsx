@@ -1,7 +1,8 @@
-import { regUser } from "../../api/regUser";
-import FormWrap from "../FormWrap/FormWrap";
+import { regUser } from "../../../api/regUser";
 
 import { useForm, SubmitHandler } from "react-hook-form";
+
+import "../Form.scss";
 
 interface SigInFormProps {
   closePopup: () => void;
@@ -34,7 +35,7 @@ const RegistrationForm = ({
   };
 
   return (
-    <FormWrap>
+    <div className="form-container">
       <h3>Register</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="inputs-container">
@@ -105,7 +106,7 @@ const RegistrationForm = ({
         </div>
         <button type="submit">Register</button>
       </form>
-    </FormWrap>
+    </div>
   );
 };
 
