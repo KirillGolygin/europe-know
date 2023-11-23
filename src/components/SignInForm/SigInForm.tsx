@@ -1,10 +1,12 @@
 import { useAppDispatch } from "../../redux/hooks/redux-hooks";
 
-import { IUser, saveFormData, signinUser } from "../../redux/users-slice";
+import { saveFormData, signinUser } from "../../redux/users-slice";
 
 import FormWrap from "../FormWrap/FormWrap";
 
 import { useForm, SubmitHandler } from "react-hook-form";
+
+import type { IUser } from "../../interfaces/user";
 
 interface SigInFormProps {
   closePopup: () => void;

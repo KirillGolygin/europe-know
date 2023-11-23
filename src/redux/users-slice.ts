@@ -6,14 +6,7 @@ import type { RootState } from "./store";
 
 import { getUsers } from "../api";
 
-import type { ICountry } from "./countries-slice";
-
-export interface IUser {
-  _id: string;
-  login: string;
-  password: string;
-  favourits: ICountry[];
-}
+import type { IUser } from "../interfaces/user";
 
 interface UsersState {
   currentUser: IUser | null;
@@ -33,7 +26,7 @@ const initialState: UsersState = {
 
 export function* signinUserSaga(): any {
   const { users } = yield select();
-  yield put(setCurrentUserLoading());
+  yield put(loginUserLoading());
   try {
     const response = yield call(getUsers);
     const { result } = yield response.data;
@@ -43,9 +36,9 @@ export function* signinUserSaga(): any {
         user.login === users.siginFormData.login &&
         user.password === users.siginFormData.password
     );
-    yield put(setCurrentUserSuccess(correctUser));
+    yield put(loginUserSuccess(correctUser));
   } catch (error) {
-    yield put(setCurrentUserRejected(`Произошла ошибка: ${error}`));
+    yield put(loginUseRejected(`Произошла ошибка: ${error}`));
   }
 }
 
@@ -53,17 +46,17 @@ export const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    setCurrentUserLoading: (state) => {
+    loginUserLoading: (state) => {
       state.signinErrorMessage = null;
     },
-    setCurrentUserSuccess: (state, action: PayloadAction<IUser>) => {
+    loginUserSuccess: (state, action: PayloadAction<IUser>) => {
       if (action.payload) {
         state.currentUser = action.payload;
       } else {
         state.signinErrorMessage = "Данный пользователь не зарегестрирован";
       }
     },
-    setCurrentUserRejected: (state, action: PayloadAction<string>) => {
+    loginUseRejected: (state, action: PayloadAction<string>) => {
       state.error = action.payload;
     },
     saveFormData: (state, action: PayloadAction<IUser>) => {
@@ -82,9 +75,9 @@ export const SIGNIN_USER = "users/signinUser";
 export const signinUser = createAction(SIGNIN_USER);
 
 export const {
-  setCurrentUserSuccess,
-  setCurrentUserRejected,
-  setCurrentUserLoading,
+  loginUserLoading,
+  loginUserSuccess,
+  loginUseRejected,
   saveFormData,
   logoutUser,
   toggleRegisterStatus,

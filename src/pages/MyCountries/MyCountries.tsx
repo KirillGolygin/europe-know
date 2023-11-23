@@ -13,7 +13,7 @@ const MyCountries = () => {
       {favourites.length !== 0 ? (
         <FavouritesList />
       ) : (
-        <p className="empty-fav">Список избранных пусть...</p>
+        <p className="empty-fav">Список избранных пуст...</p>
       )}
     </div>
   );

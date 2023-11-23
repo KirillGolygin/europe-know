@@ -6,12 +6,13 @@ import { getCountryInfo } from "../../api";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks/redux-hooks";
 
 import {
-  ICountry,
   pickCountry,
   selectPickedCountry,
   updateFavorites,
 } from "../../redux/countries-slice";
 import Star from "../../components/Star/Star";
+
+import { ICountry } from "../../interfaces/country";
 
 import "./CountryDetail.scss";
 

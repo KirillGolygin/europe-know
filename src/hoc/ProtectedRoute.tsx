@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Navigate } from "react-router-dom";
-import { IUser } from "../redux/users-slice";
+import { IUser } from "../interfaces/user";
 
 interface ProtectedRouteProps {
   role: IUser | null;

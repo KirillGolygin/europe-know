@@ -5,9 +5,8 @@ import { useAppDispatch } from "../../redux/hooks/redux-hooks";
 import { clearFavourites } from "../../redux/countries-slice";
 import {
   logoutUser,
-  setCurrentUserLoading,
+  loginUserLoading,
   toggleRegisterStatus,
-  IUser,
 } from "../../redux/users-slice";
 import { openPopup, closePopup } from "../../redux/popups-slice";
 
@@ -16,6 +15,8 @@ import SignInForm from "../SignInForm/SigInForm";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
 import SigninError from "../SigninError/SigninError";
 import RegisterSuccessed from "../RegisterSuccessed/RegisterSuccessed";
+
+import type { IUser } from "../../interfaces/user";
 
 import "./Header.scss";
 
@@ -87,7 +88,7 @@ const Header = ({
 
       {signinError && (
         <SigninError
-          closePopup={() => dispatch(setCurrentUserLoading())}
+          closePopup={() => dispatch(loginUserLoading())}
           errorMessage={signinError}
         />
       )}
