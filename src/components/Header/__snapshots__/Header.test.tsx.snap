@@ -11,7 +11,14 @@ exports[`render authorized header 1`] = `
         <nav
           class="navbar"
         >
-          <h1 />
+          <h1>
+            <a
+              class="heading"
+              href="/"
+            >
+              Europe.know
+            </a>
+          </h1>
           <div
             class="btn-group"
           >
@@ -20,6 +27,15 @@ exports[`render authorized header 1`] = `
             >
               Logout
             </button>
+            <a
+              href="/my-countries"
+            >
+              <button
+                class="button"
+              >
+                My countries
+              </button>
+            </a>
           </div>
         </nav>
       </header>
@@ -32,7 +48,14 @@ exports[`render authorized header 1`] = `
       <nav
         class="navbar"
       >
-        <h1 />
+        <h1>
+          <a
+            class="heading"
+            href="/"
+          >
+            Europe.know
+          </a>
+        </h1>
         <div
           class="btn-group"
         >
@@ -41,6 +64,15 @@ exports[`render authorized header 1`] = `
           >
             Logout
           </button>
+          <a
+            href="/my-countries"
+          >
+            <button
+              class="button"
+            >
+              My countries
+            </button>
+          </a>
         </div>
       </nav>
     </header>
@@ -110,7 +142,14 @@ exports[`render header with Register popup 1`] = `
         <nav
           class="navbar"
         >
-          <h1 />
+          <h1>
+            <a
+              class="heading"
+              href="/"
+            >
+              Europe.know
+            </a>
+          </h1>
           <div
             class="btn-group"
           >
@@ -201,7 +240,14 @@ exports[`render header with Register popup 1`] = `
       <nav
         class="navbar"
       >
-        <h1 />
+        <h1>
+          <a
+            class="heading"
+            href="/"
+          >
+            Europe.know
+          </a>
+        </h1>
         <div
           class="btn-group"
         >
@@ -349,7 +395,14 @@ exports[`render header with error popup 1`] = `
         <nav
           class="navbar"
         >
-          <h1 />
+          <h1>
+            <a
+              class="heading"
+              href="/"
+            >
+              Europe.know
+            </a>
+          </h1>
           <div
             class="btn-group"
           >
@@ -389,7 +442,14 @@ exports[`render header with error popup 1`] = `
       <nav
         class="navbar"
       >
-        <h1 />
+        <h1>
+          <a
+            class="heading"
+            href="/"
+          >
+            Europe.know
+          </a>
+        </h1>
         <div
           class="btn-group"
         >
@@ -486,7 +546,14 @@ exports[`render header with signin popup 1`] = `
         <nav
           class="navbar"
         >
-          <h1 />
+          <h1>
+            <a
+              class="heading"
+              href="/"
+            >
+              Europe.know
+            </a>
+          </h1>
           <div
             class="btn-group"
           >
@@ -555,7 +622,14 @@ exports[`render header with signin popup 1`] = `
       <nav
         class="navbar"
       >
-        <h1 />
+        <h1>
+          <a
+            class="heading"
+            href="/"
+          >
+            Europe.know
+          </a>
+        </h1>
         <div
           class="btn-group"
         >
