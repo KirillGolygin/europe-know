@@ -20,13 +20,19 @@ import { GET_COUNTRIES, getCountriesSaga } from "./countries-slice";
 import popupsReducer from "./popups-slice";
 
 import usersReducer from "./users-slice";
-import { SIGNIN_USER, signinUserSaga } from "./users-slice";
+import {
+  SIGNIN_USER,
+  signinUserSaga,
+  regUserSaga,
+  REG_USER,
+} from "./users-slice";
 
 const sagaMiddleware = createSagaMiddleware();
 
 function* sagas() {
   yield takeEvery(GET_COUNTRIES, getCountriesSaga);
   yield takeEvery(SIGNIN_USER, signinUserSaga);
+  yield takeEvery(REG_USER, regUserSaga);
 }
 
 const rootReducer = combineReducers({

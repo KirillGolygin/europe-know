@@ -1,6 +1,7 @@
 import { useAppDispatch } from "../../../redux/hooks/redux-hooks";
 
-import { saveFormData, signinUser } from "../../../redux/users-slice";
+import { saveSigninFormData, signinUser } from "../../../redux/users-slice";
+import { closePopup } from "../../../redux/popups-slice";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -8,13 +9,9 @@ import type { IUser } from "../../../interfaces/user";
 
 import "../Form.scss";
 
-interface SigInFormProps {
-  closePopup: () => void;
-}
-
 interface Inputs extends IUser {}
 
-const SignInForm = ({ closePopup }: SigInFormProps) => {
+const SignInForm = () => {
   const dispatch = useAppDispatch();
 
   const {
@@ -25,10 +22,10 @@ const SignInForm = ({ closePopup }: SigInFormProps) => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    dispatch(saveFormData(data));
+    dispatch(saveSigninFormData(data));
     dispatch(signinUser());
     reset();
-    closePopup();
+    dispatch(closePopup());
   };
 
   return (

@@ -7,6 +7,7 @@ import {
   logoutUser,
   loginUserLoading,
   toggleRegisterStatus,
+  toggleIsAlreadyRegistered,
 } from "../../redux/users-slice";
 import { openPopup, closePopup } from "../../redux/popups-slice";
 
@@ -28,6 +29,7 @@ interface HeaderProps {
   };
   signinError?: string | null;
   regStatus?: boolean;
+  isRegistered: boolean;
 }
 
 const Header = ({
@@ -35,6 +37,7 @@ const Header = ({
   popup,
   signinError,
   regStatus,
+  isRegistered,
 }: HeaderProps) => {
   const dispatch = useAppDispatch();
 
@@ -75,14 +78,7 @@ const Header = ({
       </nav>
       {popup.isOpen && (
         <Popup closePopup={() => dispatch(closePopup())}>
-          {popup.type === "signin" ? (
-            <SignInForm closePopup={() => dispatch(closePopup())} />
-          ) : (
-            <RegistrationForm
-              toggleRegisterStatus={() => dispatch(toggleRegisterStatus(true))}
-              closePopup={() => dispatch(closePopup())}
-            />
-          )}
+          {popup.type === "signin" ? <SignInForm /> : <RegistrationForm />}
         </Popup>
       )}
 
@@ -90,6 +86,13 @@ const Header = ({
         <SigninError
           closePopup={() => dispatch(loginUserLoading())}
           errorMessage={signinError}
+        />
+      )}
+
+      {isRegistered && (
+        <SigninError
+          closePopup={() => dispatch(toggleIsAlreadyRegistered(false))}
+          errorMessage="Пользователь с данным e-mail уже зарегестрирован"
         />
       )}
 

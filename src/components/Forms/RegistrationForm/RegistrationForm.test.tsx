@@ -1,8 +1,10 @@
 import { expect, it, vi } from "vitest";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
-import * as reduxHooks from "../../redux/hooks/redux-hooks";
-import * as api from "../../api";
+import * as reduxHooks from "../../../redux/hooks/redux-hooks";
+import * as api from "../../../api";
+import * as popupActions from "../../../redux/popups-slice";
+
 import RegistrationForm from "./RegistrationForm";
 
 vi.mock("../../redux/hooks/redux-hooks");
@@ -10,21 +12,17 @@ vi.mock("axios");
 
 const mockedDispatch = vi.spyOn(reduxHooks, "useAppDispatch");
 const mockedregUser = vi.spyOn(api, "regUser");
-const closePopup = vi.fn();
+const closePopup = vi.spyOn(popupActions, "closePopup");
 
 it("render RegistrationForm", () => {
   mockedDispatch.mockReturnValue(vi.fn());
 
-  const component = render(
-    <RegistrationForm toggleRegisterStatus={vi.fn()} closePopup={closePopup} />
-  );
+  const component = render(<RegistrationForm />);
   expect(component).toMatchSnapshot();
 });
 
 it("should display required error when value is invalid", async () => {
-  render(
-    <RegistrationForm toggleRegisterStatus={vi.fn()} closePopup={closePopup} />
-  );
+  render(<RegistrationForm />);
 
   fireEvent.submit(screen.getByRole("button"));
 
@@ -39,9 +37,7 @@ it("should display required error when value is invalid", async () => {
 });
 
 it("should display matching error when email is invalid", async () => {
-  render(
-    <RegistrationForm toggleRegisterStatus={vi.fn()} closePopup={closePopup} />
-  );
+  render(<RegistrationForm />);
 
   fireEvent.input(screen.getByTestId("login"), {
     target: {
@@ -73,9 +69,7 @@ it("should display matching error when email is invalid", async () => {
 });
 
 it("should display min length error when password is invalid", async () => {
-  render(
-    <RegistrationForm toggleRegisterStatus={vi.fn()} closePopup={closePopup} />
-  );
+  render(<RegistrationForm />);
 
   fireEvent.input(screen.getByTestId("login"), {
     target: {
@@ -108,9 +102,7 @@ it("should display min length error when password is invalid", async () => {
 });
 
 it("should display uppercase and number error when password is invalid", async () => {
-  render(
-    <RegistrationForm toggleRegisterStatus={vi.fn()} closePopup={closePopup} />
-  );
+  render(<RegistrationForm />);
 
   fireEvent.input(screen.getByTestId("login"), {
     target: {
@@ -143,9 +135,7 @@ it("should display uppercase and number error when password is invalid", async (
 });
 
 it("should error when password is unconfirmed", async () => {
-  render(
-    <RegistrationForm toggleRegisterStatus={vi.fn()} closePopup={closePopup} />
-  );
+  render(<RegistrationForm />);
 
   fireEvent.input(screen.getByTestId("login"), {
     target: {
@@ -178,9 +168,7 @@ it("should error when password is unconfirmed", async () => {
 });
 
 it("should not display error when value is valid", async () => {
-  render(
-    <RegistrationForm toggleRegisterStatus={vi.fn()} closePopup={closePopup} />
-  );
+  render(<RegistrationForm />);
 
   fireEvent.input(screen.getByTestId("login"), {
     target: {

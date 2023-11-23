@@ -5,6 +5,7 @@ import {
   selectCurrentUser,
   selectSigninError,
   selectRegisterSuccessed,
+  selectIsAlreadyRegistered,
 } from "../../redux/users-slice";
 import { selectPopup } from "../../redux/popups-slice";
 
@@ -17,6 +18,7 @@ const Layout = () => {
   const popup = useAppSelector(selectPopup);
   const signinError = useAppSelector(selectSigninError);
   const regStatus = useAppSelector(selectRegisterSuccessed);
+  const isRegistered = useAppSelector(selectIsAlreadyRegistered);
   return (
     <>
       <Header
@@ -24,6 +26,7 @@ const Layout = () => {
         popup={popup}
         signinError={signinError}
         regStatus={regStatus}
+        isRegistered={isRegistered}
       />
       <main className="main">
         <div className="layout-wrapper">
