@@ -5,7 +5,6 @@ import { BrowserRouter } from "react-router-dom";
 import * as reduxHooks from "../../redux/hooks/redux-hooks";
 import * as popupActions from "../../redux/popups-slice";
 import * as usersActions from "../../redux/users-slice";
-import * as CountriesActions from "../../redux/countries-slice";
 
 import Header from "./Header";
 
@@ -19,7 +18,11 @@ it("render header with Register popup", () => {
   mockedDispatch.mockReturnValue(vi.fn());
 
   const component = render(
-    <Header popup={{ type: "register", isOpen: true }} signinError={"test"} />,
+    <Header
+      isRegistered={false}
+      popup={{ type: "register", isOpen: true }}
+      signinError={"test"}
+    />,
     { wrapper: BrowserRouter }
   );
   expect(component).toMatchSnapshot();
@@ -27,9 +30,12 @@ it("render header with Register popup", () => {
 
 it("open register popup by click on register", () => {
   mockedDispatch.mockReturnValue(dispatch);
-  render(<Header popup={{ type: "register", isOpen: false }} />, {
-    wrapper: BrowserRouter,
-  });
+  render(
+    <Header isRegistered={false} popup={{ type: "register", isOpen: false }} />,
+    {
+      wrapper: BrowserRouter,
+    }
+  );
   fireEvent.click(screen.getByRole("button", { name: "Register" }));
   expect(dispatch).toBeCalled();
   expect(mockedOpenPopup).toBeCalledWith("register");
@@ -39,7 +45,7 @@ it("render header with signin popup", () => {
   mockedDispatch.mockReturnValue(vi.fn());
 
   const component = render(
-    <Header popup={{ type: "signin", isOpen: true }} />,
+    <Header isRegistered={false} popup={{ type: "signin", isOpen: true }} />,
     { wrapper: BrowserRouter }
   );
   expect(component).toMatchSnapshot();
@@ -47,9 +53,12 @@ it("render header with signin popup", () => {
 
 it("open signin popup by click on signin", () => {
   mockedDispatch.mockReturnValue(dispatch);
-  render(<Header popup={{ type: "signin", isOpen: false }} />, {
-    wrapper: BrowserRouter,
-  });
+  render(
+    <Header isRegistered={false} popup={{ type: "signin", isOpen: false }} />,
+    {
+      wrapper: BrowserRouter,
+    }
+  );
   fireEvent.click(screen.getByRole("button", { name: "Login" }));
   expect(dispatch).toBeCalled();
   expect(mockedOpenPopup).toBeCalledWith("signin");
@@ -59,7 +68,11 @@ it("render header with error popup", () => {
   mockedDispatch.mockReturnValue(vi.fn());
 
   const component = render(
-    <Header popup={{ type: "signin", isOpen: false }} signinError="test" />,
+    <Header
+      isRegistered={false}
+      popup={{ type: "signin", isOpen: false }}
+      signinError="test"
+    />,
     { wrapper: BrowserRouter }
   );
   expect(component).toMatchSnapshot();
@@ -70,6 +83,7 @@ it("render authorized header", () => {
 
   const component = render(
     <Header
+      isRegistered={false}
       popup={{ type: "signin", isOpen: false }}
       currentUser={{
         _id: "1",
@@ -87,6 +101,7 @@ it("logout user by clicking logout button", () => {
   mockedDispatch.mockReturnValue(dispatch);
   render(
     <Header
+      isRegistered={false}
       popup={{ type: "signin", isOpen: false }}
       currentUser={{
         _id: "1",
@@ -99,18 +114,16 @@ it("logout user by clicking logout button", () => {
   );
 
   const mockedLogout = vi.spyOn(usersActions, "logoutUser");
-  const mockedClearFavourites = vi.spyOn(CountriesActions, "clearFavourites");
 
   fireEvent.click(screen.getByRole("button", { name: "Logout" }));
   expect(dispatch).toBeCalledTimes(4);
   expect(mockedLogout).toBeCalled();
-  expect(mockedClearFavourites).toBeCalled();
-  screen.debug();
 });
 
 it("check main link", () => {
   render(
     <Header
+      isRegistered={false}
       popup={{ type: "signin", isOpen: false }}
       currentUser={{
         _id: "1",
@@ -129,6 +142,7 @@ it("check main link", () => {
 it("check my countries link", () => {
   render(
     <Header
+      isRegistered={false}
       popup={{ type: "signin", isOpen: false }}
       currentUser={{
         _id: "1",

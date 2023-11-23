@@ -3,11 +3,7 @@ import { useAppSelector } from "../../redux/hooks/redux-hooks";
 import CountryCard from "../CountryCard/CountryCard";
 import Loader from "../Loader/Loader";
 
-import {
-  selectFilteredCountries,
-  selectLoading,
-  selectError,
-} from "../../redux/countries-slice";
+import { selectFilteredCountries } from "../../redux/countries-slice";
 
 import "./CountriesList.scss";
 
@@ -17,7 +13,6 @@ interface CountriesListProps {
 
 const CountriesList = ({ loading }: CountriesListProps) => {
   const countries = useAppSelector(selectFilteredCountries);
-  const error = useAppSelector(selectError);
 
   return (
     <>

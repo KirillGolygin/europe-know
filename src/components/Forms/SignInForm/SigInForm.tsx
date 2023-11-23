@@ -1,18 +1,17 @@
-import { useAppDispatch } from "../../redux/hooks/redux-hooks";
+import { useAppDispatch } from "../../../redux/hooks/redux-hooks";
 
-import { IUser, saveFormData, signinUser } from "../../redux/users-slice";
-
-import FormWrap from "../FormWrap/FormWrap";
+import { saveSigninFormData, signinUser } from "../../../redux/users-slice";
+import { closePopup } from "../../../redux/popups-slice";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 
-interface SigInFormProps {
-  closePopup: () => void;
-}
+import type { IUser } from "../../../interfaces/user";
+
+import "../Form.scss";
 
 interface Inputs extends IUser {}
 
-const SignInForm = ({ closePopup }: SigInFormProps) => {
+const SignInForm = () => {
   const dispatch = useAppDispatch();
 
   const {
@@ -23,14 +22,14 @@ const SignInForm = ({ closePopup }: SigInFormProps) => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    dispatch(saveFormData(data));
+    dispatch(saveSigninFormData(data));
     dispatch(signinUser());
     reset();
-    closePopup();
+    dispatch(closePopup());
   };
 
   return (
-    <FormWrap>
+    <div className="form-container">
       <h3>Sign in</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="inputs-container">
@@ -41,7 +40,7 @@ const SignInForm = ({ closePopup }: SigInFormProps) => {
               {...register("login", {
                 required: "Поле должно быть заполнено",
                 pattern: {
-                  value: /.+@.+\..+/,
+                  value: /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/,
                   message: "Логин должен являться почтой",
                 },
               })}
@@ -80,7 +79,7 @@ const SignInForm = ({ closePopup }: SigInFormProps) => {
         </div>
         <button type="submit">Sign in</button>
       </form>
-    </FormWrap>
+    </div>
   );
 };
 

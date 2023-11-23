@@ -1,19 +1,21 @@
-import { regUser } from "../../api/regUser";
-import FormWrap from "../FormWrap/FormWrap";
+import { useAppDispatch } from "../../../redux/hooks/redux-hooks";
+
+import { closePopup } from "../../../redux/popups-slice";
+import { registerUser, saveRegFormData } from "../../../redux/users-slice";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 
-interface SigInFormProps {
-  closePopup: () => void;
-}
+import type { IUser } from "../../../interfaces/user";
 
-interface Inputs {
-  login: string;
-  password: string;
+import "../Form.scss";
+
+interface Inputs extends IUser {
   confirmPassword: string;
 }
 
-const RegistrationForm = ({ closePopup }: SigInFormProps) => {
+const RegistrationForm = () => {
+  const dispatch = useAppDispatch();
+
   const {
     register,
     watch,
@@ -23,13 +25,14 @@ const RegistrationForm = ({ closePopup }: SigInFormProps) => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    regUser(data);
-    closePopup();
+    dispatch(saveRegFormData(data));
+    dispatch(registerUser());
+    dispatch(closePopup());
     reset();
   };
 
   return (
-    <FormWrap>
+    <div className="form-container">
       <h3>Register</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="inputs-container">
@@ -40,7 +43,7 @@ const RegistrationForm = ({ closePopup }: SigInFormProps) => {
               {...register("login", {
                 required: "Поле должно быть заполнено",
                 pattern: {
-                  value: /.+@.+\..+/,
+                  value: /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/,
                   message: "Логин должен являться почтой",
                 },
               })}
@@ -100,7 +103,7 @@ const RegistrationForm = ({ closePopup }: SigInFormProps) => {
         </div>
         <button type="submit">Register</button>
       </form>
-    </FormWrap>
+    </div>
   );
 };
 

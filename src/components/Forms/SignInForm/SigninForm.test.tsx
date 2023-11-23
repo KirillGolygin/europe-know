@@ -1,26 +1,27 @@
 import { expect, it, vi } from "vitest";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
-import * as reduxHooks from "../../redux/hooks/redux-hooks";
-import * as userActions from "../../redux/users-slice";
+import * as reduxHooks from "../../../redux/hooks/redux-hooks";
+import * as userActions from "../../../redux/users-slice";
+import * as popupActions from "../../../redux/popups-slice";
 import SignInForm from "./SigInForm";
 
 vi.mock("../../redux/hooks/redux-hooks");
 
 const mockedDispatch = vi.spyOn(reduxHooks, "useAppDispatch");
-const mockedSaveFormData = vi.spyOn(userActions, "saveFormData");
+const mockedSaveFormData = vi.spyOn(userActions, "saveSigninFormData");
 const mockedSigninUser = vi.spyOn(userActions, "signinUser");
-const closePopup = vi.fn();
+const closePopup = vi.spyOn(popupActions, "closePopup");
 
 it("render SigninForm", () => {
   mockedDispatch.mockReturnValue(vi.fn());
 
-  const component = render(<SignInForm closePopup={closePopup} />);
+  const component = render(<SignInForm />);
   expect(component).toMatchSnapshot();
 });
 
 it("should display required error when value is invalid", async () => {
-  render(<SignInForm closePopup={closePopup} />);
+  render(<SignInForm />);
 
   fireEvent.submit(screen.getByRole("button"));
 
@@ -35,7 +36,7 @@ it("should display required error when value is invalid", async () => {
 });
 
 it("should display matching error when email is invalid", async () => {
-  render(<SignInForm closePopup={closePopup} />);
+  render(<SignInForm />);
 
   fireEvent.input(screen.getByTestId("login"), {
     target: {
@@ -62,7 +63,7 @@ it("should display matching error when email is invalid", async () => {
 });
 
 it("should display min length error when password is invalid", async () => {
-  render(<SignInForm closePopup={closePopup} />);
+  render(<SignInForm />);
 
   fireEvent.input(screen.getByTestId("login"), {
     target: {
@@ -89,7 +90,7 @@ it("should display min length error when password is invalid", async () => {
 });
 
 it("should display uppercase and number error when password is invalid", async () => {
-  render(<SignInForm closePopup={closePopup} />);
+  render(<SignInForm />);
 
   fireEvent.input(screen.getByTestId("login"), {
     target: {
@@ -116,7 +117,7 @@ it("should display uppercase and number error when password is invalid", async (
 });
 
 it("should not display error when value is valid", async () => {
-  render(<SignInForm closePopup={closePopup} />);
+  render(<SignInForm />);
 
   fireEvent.input(screen.getByTestId("login"), {
     target: {

@@ -18,6 +18,10 @@ interface StarProps {
 
 const Star = ({ countryName, favourite }: StarProps) => {
   const dispatch = useAppDispatch();
+  const addToFavAfterLogin = (name: string) => {
+    dispatch(openPopup("signin"));
+    changeFavouriteStatus(name);
+  };
   const changeFavouriteStatus = (name: string) =>
     dispatch(changeFavourites(name));
 
@@ -27,13 +31,13 @@ const Star = ({ countryName, favourite }: StarProps) => {
       className="star"
       onClick={
         !currentUser
-          ? () => dispatch(openPopup("signin"))
+          ? () => addToFavAfterLogin(countryName)
           : () => changeFavouriteStatus(countryName)
       }
     >
       <div
         data-testid="star-icon"
-        className={cn("star-icon", { ["filled"]: favourite })}
+        className={cn("star-icon", { ["filled"]: favourite && currentUser })}
       >
         <StarIcon />
       </div>
