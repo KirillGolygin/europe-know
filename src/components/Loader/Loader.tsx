@@ -1,6 +1,6 @@
-import { Oval } from "react-loader-spinner";
+import { Oval } from 'react-loader-spinner';
 
-import "./Loader.scss";
+import './Loader.scss';
 
 const Loader = () => {
   return (

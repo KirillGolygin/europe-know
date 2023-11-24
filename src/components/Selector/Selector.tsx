@@ -1,14 +1,14 @@
-import { useAppSelector, useAppDispatch } from "../../redux/hooks/redux-hooks";
+import { useAppSelector, useAppDispatch } from '../../redux/hooks/redux-hooks';
 import {
   selectFilteredCountries,
   sortCountries,
-  updateFavorites,
-} from "../../redux/countries-slice";
+  updateFavorites
+} from '../../redux/countries-slice';
 
-import Select, { InputActionMeta } from "react-select";
+import Select, { InputActionMeta } from 'react-select';
 
-import "./Selector.scss";
-import { useNavigate } from "react-router-dom";
+import './Selector.scss';
+import { useNavigate } from 'react-router-dom';
 
 const Selector = () => {
   const dispatch = useAppDispatch();
@@ -16,7 +16,7 @@ const Selector = () => {
 
   const filterCountries = (value: string, actionMeta?: InputActionMeta) => {
     setTimeout(() => {
-      if (value === "") {
+      if (value === '') {
         dispatch(sortCountries(actionMeta?.prevInputValue as string));
         dispatch(updateFavorites());
       } else {
@@ -34,7 +34,7 @@ const Selector = () => {
   };
   const options = countries.map((country) => ({
     value: country.name.common,
-    label: country.name.common,
+    label: country.name.common
   }));
 
   return (
@@ -46,9 +46,7 @@ const Selector = () => {
         className="selector"
         backspaceRemovesValue
         isClearable
-        onInputChange={(choice, actionMeta) =>
-          filterCountries(choice, actionMeta)
-        }
+        onInputChange={(choice, actionMeta) => filterCountries(choice, actionMeta)}
         onChange={(choice) => redirectToInfoPage(choice?.value as string)}
       />
     </div>

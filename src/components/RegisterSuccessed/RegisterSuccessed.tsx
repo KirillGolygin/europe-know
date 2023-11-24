@@ -1,14 +1,11 @@
-import "./RegisterSuccessed.scss";
+import './RegisterSuccessed.scss';
 
 interface RegisterSuccessedtProps {
   closePopup: () => void;
   showSigninPopup: () => void;
 }
 
-const RegisterSuccessed = ({
-  closePopup,
-  showSigninPopup,
-}: RegisterSuccessedtProps) => {
+const RegisterSuccessed = ({ closePopup, showSigninPopup }: RegisterSuccessedtProps) => {
   const openSigninPopup = () => {
     closePopup();
     showSigninPopup();

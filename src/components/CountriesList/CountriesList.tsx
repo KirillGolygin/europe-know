@@ -1,11 +1,11 @@
-import { useAppSelector } from "../../redux/hooks/redux-hooks";
+import { useAppSelector } from '../../redux/hooks/redux-hooks';
 
-import CountryCard from "../CountryCard/CountryCard";
-import Loader from "../Loader/Loader";
+import CountryCard from '../CountryCard/CountryCard';
+import Loader from '../Loader/Loader';
 
-import { selectFilteredCountries } from "../../redux/countries-slice";
+import { selectFilteredCountries } from '../../redux/countries-slice';
 
-import "./CountriesList.scss";
+import './CountriesList.scss';
 
 interface CountriesListProps {
   loading: boolean;

@@ -1,8 +1,8 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import createSagaMiddleware from "@redux-saga/core";
-import { takeEvery } from "redux-saga/effects";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import createSagaMiddleware from '@redux-saga/core';
+import { takeEvery } from 'redux-saga/effects';
 
-import storage from "redux-persist/lib/storage";
+import storage from 'redux-persist/lib/storage';
 import {
   FLUSH,
   PAUSE,
@@ -11,26 +11,21 @@ import {
   REGISTER,
   REHYDRATE,
   persistReducer,
-  persistStore,
-} from "redux-persist";
+  persistStore
+} from 'redux-persist';
 
-import countriesReducer from "./countries-slice";
+import countriesReducer from './countries-slice';
 import {
   GET_COUNTRIES,
   getCountriesSaga,
   GET_COUNTRY_DETAILS,
-  getCountryDetailsSaga,
-} from "./countries-slice";
+  getCountryDetailsSaga
+} from './countries-slice';
 
-import popupsReducer from "./popups-slice";
+import popupsReducer from './popups-slice';
 
-import usersReducer from "./users-slice";
-import {
-  SIGNIN_USER,
-  signinUserSaga,
-  regUserSaga,
-  REG_USER,
-} from "./users-slice";
+import usersReducer from './users-slice';
+import { SIGNIN_USER, signinUserSaga, regUserSaga, REG_USER } from './users-slice';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -44,12 +39,12 @@ function* sagas() {
 const rootReducer = combineReducers({
   countries: countriesReducer,
   popups: popupsReducer,
-  users: usersReducer,
+  users: usersReducer
 });
 
 const persistConfig = {
-  key: "root",
-  storage,
+  key: 'root',
+  storage
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -60,10 +55,10 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
       },
-      thunk: false,
-    }).concat(sagaMiddleware),
+      thunk: false
+    }).concat(sagaMiddleware)
 });
 
 sagaMiddleware.run(sagas);

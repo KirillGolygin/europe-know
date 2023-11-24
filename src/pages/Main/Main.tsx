@@ -1,12 +1,12 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/redux-hooks";
-import { getCountries, selectLoading } from "../../redux/countries-slice";
+import { useAppDispatch, useAppSelector } from '../../redux/hooks/redux-hooks';
+import { getCountries, selectLoading } from '../../redux/countries-slice';
 
-import CountriesList from "../../components/CountriesList/CountriesList";
-import Selector from "../../components/Selector/Selector";
+import CountriesList from '../../components/CountriesList/CountriesList';
+import Selector from '../../components/Selector/Selector';
 
-import "./Main.scss";
+import './Main.scss';
 
 const Main = () => {
   const loadingCountries = useAppSelector(selectLoading);

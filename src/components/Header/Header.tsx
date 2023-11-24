@@ -1,30 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import { useAppDispatch } from "../../redux/hooks/redux-hooks";
+import { useAppDispatch } from '../../redux/hooks/redux-hooks';
 
 import {
   logoutUser,
   loginUserLoading,
   toggleRegisterStatus,
-  toggleIsAlreadyRegistered,
-} from "../../redux/users-slice";
-import { openPopup, closePopup } from "../../redux/popups-slice";
-import { clearFavourites } from "../../redux/countries-slice";
+  toggleIsAlreadyRegistered
+} from '../../redux/users-slice';
+import { openPopup, closePopup } from '../../redux/popups-slice';
+import { clearFavourites } from '../../redux/countries-slice';
 
-import Popup from "../Popup/Popup";
-import SignInForm from "../Forms/SignInForm/SigInForm";
-import RegistrationForm from "../Forms/RegistrationForm/RegistrationForm";
-import SigninError from "../SigninError/SigninError";
-import RegisterSuccessed from "../RegisterSuccessed/RegisterSuccessed";
+import Popup from '../Popup/Popup';
+import SignInForm from '../Forms/SignInForm/SigInForm';
+import RegistrationForm from '../Forms/RegistrationForm/RegistrationForm';
+import SigninError from '../SigninError/SigninError';
+import RegisterSuccessed from '../RegisterSuccessed/RegisterSuccessed';
 
-import type { IUser } from "../../interfaces/user";
+import type { IUser } from '../../interfaces/user';
 
-import "./Header.scss";
+import './Header.scss';
 
 interface HeaderProps {
   currentUser?: IUser | null;
   popup: {
-    type: "signin" | "register";
+    type: 'signin' | 'register';
     isOpen: boolean;
   };
   signinError?: string | null;
@@ -32,13 +32,7 @@ interface HeaderProps {
   isRegistered: boolean;
 }
 
-const Header = ({
-  currentUser,
-  popup,
-  signinError,
-  regStatus,
-  isRegistered,
-}: HeaderProps) => {
+const Header = ({ currentUser, popup, signinError, regStatus, isRegistered }: HeaderProps) => {
   const dispatch = useAppDispatch();
 
   const logout = () => {
@@ -50,12 +44,12 @@ const Header = ({
     dispatch(clearFavourites());
   };
 
-  const showPopup = (type: "signin" | "register") => dispatch(openPopup(type));
+  const showPopup = (type: 'signin' | 'register') => dispatch(openPopup(type));
   return (
     <header className="header">
       <nav className="navbar">
         <h1>
-          <Link className="heading" to={"/"}>
+          <Link className="heading" to={'/'}>
             Europe.know
           </Link>
         </h1>
@@ -65,16 +59,16 @@ const Header = ({
               <button className="button" onClick={() => logout()}>
                 Logout
               </button>
-              <Link to={"/my-countries"}>
+              <Link to={'/my-countries'}>
                 <button className="button">My countries</button>
               </Link>
             </>
           ) : (
             <>
-              <button className="button" onClick={() => showPopup("signin")}>
+              <button className="button" onClick={() => showPopup('signin')}>
                 Login
               </button>
-              <button className="button" onClick={() => showPopup("register")}>
+              <button className="button" onClick={() => showPopup('register')}>
                 Register
               </button>
             </>
@@ -83,15 +77,12 @@ const Header = ({
       </nav>
       {popup.isOpen && (
         <Popup closePopup={clearFavWhenClosePopup}>
-          {popup.type === "signin" ? <SignInForm /> : <RegistrationForm />}
+          {popup.type === 'signin' ? <SignInForm /> : <RegistrationForm />}
         </Popup>
       )}
 
       {signinError && (
-        <SigninError
-          closePopup={() => dispatch(loginUserLoading())}
-          errorMessage={signinError}
-        />
+        <SigninError closePopup={() => dispatch(loginUserLoading())} errorMessage={signinError} />
       )}
 
       {isRegistered && (
@@ -103,7 +94,7 @@ const Header = ({
 
       {regStatus && (
         <RegisterSuccessed
-          showSigninPopup={() => showPopup("signin")}
+          showSigninPopup={() => showPopup('signin')}
           closePopup={() => dispatch(toggleRegisterStatus(false))}
         />
       )}

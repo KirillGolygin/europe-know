@@ -1,17 +1,17 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
 
-import { useAppSelector } from "../../redux/hooks/redux-hooks";
+import { useAppSelector } from '../../redux/hooks/redux-hooks';
 import {
   selectCurrentUser,
   selectSigninError,
   selectRegisterSuccessed,
-  selectIsAlreadyRegistered,
-} from "../../redux/users-slice";
-import { selectPopup } from "../../redux/popups-slice";
+  selectIsAlreadyRegistered
+} from '../../redux/users-slice';
+import { selectPopup } from '../../redux/popups-slice';
 
-import Header from "../Header/Header";
+import Header from '../Header/Header';
 
-import "./Layout.scss";
+import './Layout.scss';
 
 const Layout = () => {
   const currentUser = useAppSelector(selectCurrentUser);

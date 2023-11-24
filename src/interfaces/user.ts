@@ -1,4 +1,4 @@
-import type { ICountry } from "./country";
+import type { ICountry } from './country';
 
 export interface IUser {
   _id: string;

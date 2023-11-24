@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 const projectid = import.meta.env.VITE_SANITY_PROJECT_ID;
 const sanityToken = import.meta.env.VITE_SANITY_API_TOKEN;
@@ -10,17 +10,17 @@ export const regUser = (data: { login: string; password: string }) =>
       mutations: [
         {
           create: {
-            _type: "users",
+            _type: 'users',
             login: data.login,
-            password: data.password,
-          },
-        },
-      ],
+            password: data.password
+          }
+        }
+      ]
     },
     {
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${sanityToken}`,
-      },
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${sanityToken}`
+      }
     }
   );

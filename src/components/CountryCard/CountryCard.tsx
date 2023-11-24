@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router";
+import { useNavigate } from 'react-router';
 
-import Star from "../Star/Star";
+import Star from '../Star/Star';
 
-import "./CountryCard.scss";
+import './CountryCard.scss';
 
 interface CountryCardProps {
   name: string;

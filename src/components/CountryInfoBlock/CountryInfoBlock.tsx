@@ -1,4 +1,4 @@
-import "./CountryInfoBlock.scss";
+import './CountryInfoBlock.scss';
 
 interface CountryInfoBlockProps {
   title: string;
@@ -9,7 +9,7 @@ const CountryInfoBlock = ({ title, text }: CountryInfoBlockProps) => {
   return (
     <div className="info">
       <p className="title">{title}:</p>
-      {typeof text === "string" ? (
+      {typeof text === 'string' ? (
         <p className="text">{text}</p>
       ) : (
         <p className="text">

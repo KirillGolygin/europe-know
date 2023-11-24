@@ -1,12 +1,12 @@
-import { IUser } from "./../interfaces/user";
-import { createAction, createSlice } from "@reduxjs/toolkit";
-import { put, call, select } from "redux-saga/effects";
+import { IUser } from './../interfaces/user';
+import { createAction, createSlice } from '@reduxjs/toolkit';
+import { put, call, select } from 'redux-saga/effects';
 
-import type { PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "./store";
+import type { PayloadAction } from '@reduxjs/toolkit';
+import type { RootState } from './store';
 
-import { getUsers, regUser } from "../api";
-import { AxiosResponse } from "axios";
+import { getUsers, regUser } from '../api';
+import { AxiosResponse } from 'axios';
 
 interface UsersState {
   currentUser: IUser | null;
@@ -25,7 +25,7 @@ const initialState: UsersState = {
   signinErrorMessage: null,
   error: null,
   registerSuccessed: false,
-  isAlreadyRegistered: false,
+  isAlreadyRegistered: false
 };
 
 export function* signinUserSaga() {
@@ -37,8 +37,7 @@ export function* signinUserSaga() {
 
     const correctUser = result.find(
       (user: IUser) =>
-        user.login === users.siginFormData.login &&
-        user.password === users.siginFormData.password
+        user.login === users.siginFormData.login && user.password === users.siginFormData.password
     );
     yield put(loginUserSuccess(correctUser));
   } catch (error) {
@@ -51,9 +50,7 @@ export function* regUserSaga() {
   const response: AxiosResponse<unknown, unknown> = yield call(getUsers);
   const { result } = yield response.data;
 
-  const registeredUser = result.find(
-    (user: IUser) => user.login === users.regFormData.login
-  );
+  const registeredUser = result.find((user: IUser) => user.login === users.regFormData.login);
 
   if (registeredUser) {
     yield put(toggleIsAlreadyRegistered(true));
@@ -64,7 +61,7 @@ export function* regUserSaga() {
 }
 
 export const usersSlice = createSlice({
-  name: "users",
+  name: 'users',
   initialState,
   reducers: {
     loginUserLoading: (state) => {
@@ -74,7 +71,7 @@ export const usersSlice = createSlice({
       if (action.payload) {
         state.currentUser = action.payload;
       } else {
-        state.signinErrorMessage = "Данный пользователь не зарегестрирован";
+        state.signinErrorMessage = 'Данный пользователь не зарегестрирован';
       }
     },
     loginUseRejected: (state, action: PayloadAction<string>) => {
@@ -94,14 +91,14 @@ export const usersSlice = createSlice({
     },
     toggleIsAlreadyRegistered: (state, action: PayloadAction<boolean>) => {
       state.isAlreadyRegistered = action.payload;
-    },
-  },
+    }
+  }
 });
 
-export const SIGNIN_USER = "users/signinUser";
+export const SIGNIN_USER = 'users/signinUser';
 export const signinUser = createAction(SIGNIN_USER);
 
-export const REG_USER = "users/regUser";
+export const REG_USER = 'users/regUser';
 export const registerUser = createAction(REG_USER);
 
 export const {
@@ -112,19 +109,15 @@ export const {
   logoutUser,
   toggleRegisterStatus,
   toggleIsAlreadyRegistered,
-  saveRegFormData,
+  saveRegFormData
 } = usersSlice.actions;
 
-export const selectFilteredCountries = (state: RootState) =>
-  state.countries.filteredCountries;
+export const selectFilteredCountries = (state: RootState) => state.countries.filteredCountries;
 
 export const selectCurrentUser = (state: RootState) => state.users.currentUser;
-export const selectSigninError = (state: RootState) =>
-  state.users.signinErrorMessage;
+export const selectSigninError = (state: RootState) => state.users.signinErrorMessage;
 export const selectError = (state: RootState) => state.users.error;
-export const selectRegisterSuccessed = (state: RootState) =>
-  state.users.registerSuccessed;
-export const selectIsAlreadyRegistered = (state: RootState) =>
-  state.users.isAlreadyRegistered;
+export const selectRegisterSuccessed = (state: RootState) => state.users.registerSuccessed;
+export const selectIsAlreadyRegistered = (state: RootState) => state.users.isAlreadyRegistered;
 
 export default usersSlice.reducer;
