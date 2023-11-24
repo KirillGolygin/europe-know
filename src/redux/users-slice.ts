@@ -6,6 +6,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./store";
 
 import { getUsers, regUser } from "../api";
+import { AxiosResponse } from "axios";
 
 interface UsersState {
   currentUser: IUser | null;
@@ -27,11 +28,11 @@ const initialState: UsersState = {
   isAlreadyRegistered: false,
 };
 
-export function* signinUserSaga(): any {
+export function* signinUserSaga() {
   const { users } = yield select();
   yield put(loginUserLoading());
   try {
-    const response = yield call(getUsers);
+    const response: AxiosResponse<unknown, unknown> = yield call(getUsers);
     const { result } = yield response.data;
 
     const correctUser = result.find(
@@ -45,9 +46,9 @@ export function* signinUserSaga(): any {
   }
 }
 
-export function* regUserSaga(): any {
+export function* regUserSaga() {
   const { users } = yield select();
-  const response = yield call(getUsers);
+  const response: AxiosResponse<unknown, unknown> = yield call(getUsers);
   const { result } = yield response.data;
 
   const registeredUser = result.find(

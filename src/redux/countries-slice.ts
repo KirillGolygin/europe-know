@@ -7,6 +7,7 @@ import type { RootState } from "./store";
 import { getAllCountries } from "../api";
 
 import type { ICountry, IPickedCountry } from "../interfaces/country";
+import { AxiosResponse } from "axios";
 
 interface CountriesState {
   countries: ICountry[];
@@ -26,12 +27,14 @@ const initialState: CountriesState = {
   error: null,
 };
 
-export function* getCountriesSaga(): any {
+export function* getCountriesSaga() {
   try {
     yield put(getCountriesPending());
-    const response = yield call(getAllCountries);
+    const response: AxiosResponse<unknown, unknown> = yield call(
+      getAllCountries
+    );
 
-    const payload = yield response.data;
+    const payload: ICountry[] = yield response.data;
     yield put(getCountriesSuccess(payload));
     yield put(updateFavorites());
   } catch (error) {
