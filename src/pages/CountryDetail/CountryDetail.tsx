@@ -10,6 +10,8 @@ import {
 } from "../../redux/countries-slice";
 
 import Star from "../../components/Star/Star";
+import CountryInfoBlock from "../../components/CountryInfoBlock/CountryInfoBlock";
+import CountryInfoPic from "../../components/CountryInfoPic/CountryInfoPic";
 
 import "./CountryDetail.scss";
 
@@ -37,61 +39,24 @@ const CountryDetail = () => {
           />
         </div>
 
-        <div className="info">
-          <p className="title">capital:</p>
-          <p className="text">{pickedCountry.capital}</p>
-        </div>
-
-        <div className="info">
-          <p className="title">Currencies:</p>
-          <p className="text">
-            {pickedCountry.currencies.map((cur) => (
-              <span key={cur}>{cur}</span>
-            ))}
-          </p>
-        </div>
-
-        <div className="info">
-          <p className="title">Region:</p>
-          <p className="text">{pickedCountry.region}</p>
-        </div>
-
-        <div className="info">
-          <p className="title">Languages:</p>
-          <p className="text">
-            {pickedCountry.languages.map((lang) => (
-              <span key={lang}>{lang} </span>
-            ))}
-          </p>
-        </div>
-
-        <div className="info">
-          <p className="title">Population:</p>
-          <p className="text">{pickedCountry.population}</p>
-        </div>
+        <CountryInfoBlock title="Capital" text={pickedCountry.capital} />
+        <CountryInfoBlock title="Currencies" text={pickedCountry.currencies} />
+        <CountryInfoBlock title="Region" text={pickedCountry.region} />
+        <CountryInfoBlock title="Languages" text={pickedCountry.languages} />
+        <CountryInfoBlock title="Population" text={pickedCountry.population} />
       </div>
-      <div className="pics-container">
-        <div className="pic">
-          <p className="text">Flag</p>
-          <div className="img-container">
-            <img
-              className="img"
-              src={pickedCountry.flags.png}
-              alt={pickedCountry.flags.alt}
-            />
-          </div>
-        </div>
 
-        <div className="pic">
-          <p className="text">Coat of arms</p>
-          <div className="img-container">
-            <img
-              className="img"
-              src={pickedCountry.coatOfArms.png}
-              alt={`coat of arms of ${pickedCountry.name.common}`}
-            />
-          </div>
-        </div>
+      <div className="pics-container">
+        <CountryInfoPic
+          title="Flag"
+          src={pickedCountry.flags.png}
+          alt={pickedCountry.flags.alt}
+        />
+        <CountryInfoPic
+          title="Coat of arms"
+          src={pickedCountry.coatOfArms.png}
+          alt={`coat of arms of ${pickedCountry.name.common}`}
+        />
       </div>
     </div>
   );
