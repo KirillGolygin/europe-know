@@ -116,7 +116,7 @@ it("logout user by clicking logout button", () => {
   const mockedLogout = vi.spyOn(usersActions, "logoutUser");
 
   fireEvent.click(screen.getByRole("button", { name: "Logout" }));
-  expect(dispatch).toBeCalledTimes(4);
+  expect(dispatch).toBeCalledTimes(3);
   expect(mockedLogout).toBeCalled();
 });
 

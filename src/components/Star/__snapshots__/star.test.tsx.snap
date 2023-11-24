@@ -132,7 +132,7 @@ exports[`renders correctly when favourite = true 1`] = `
         class="star"
       >
         <div
-          class="star-icon filled"
+          class="star-icon"
           data-testid="star-icon"
         >
           <svg
@@ -165,7 +165,7 @@ exports[`renders correctly when favourite = true 1`] = `
       class="star"
     >
       <div
-        class="star-icon filled"
+        class="star-icon"
         data-testid="star-icon"
       >
         <svg

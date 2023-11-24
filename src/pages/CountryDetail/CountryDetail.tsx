@@ -1,62 +1,28 @@
 import { useEffect } from "react";
 import { useParams } from "react-router";
 
-import { getCountryInfo } from "../../api";
 
 import { useAppSelector, useAppDispatch } from "../../redux/hooks/redux-hooks";
 
 import {
-  pickCountry,
+  getCountryDetails,
   selectPickedCountry,
-  updateFavorites,
 } from "../../redux/countries-slice";
-import Star from "../../components/Star/Star";
 
-import { ICountry } from "../../interfaces/country";
+import Star from "../../components/Star/Star";
 
 import "./CountryDetail.scss";
 
-interface ICountryDetail extends ICountry {
-  population: string;
-  coatOfArms: {
-    png: string;
-    svg: string;
-  };
-  currencies: string[];
-  region: string;
-  languages: string[];
-}
-
 const CountryDetail = () => {
-  const dispatch = useAppDispatch();
+  const disaptch = useAppDispatch();
   const { country } = useParams();
   const pickedCountry = useAppSelector(selectPickedCountry);
 
   useEffect(() => {
     if (!country) return;
 
-    const getInfo = async () => {
-      const response = await getCountryInfo(country);
-      const data = response.data[0];
-
-      const languages = [];
-      for (const lang in data.languages) {
-        languages.push(data.languages[lang]);
-      }
-
-      const prepearedData: ICountryDetail = {
-        ...data,
-        currencies: Object.keys(data.currencies),
-        languages: languages,
-        population: data.population.toLocaleString("ru"),
-      };
-
-      dispatch(pickCountry(prepearedData));
-      dispatch(updateFavorites());
-    };
-
-    getInfo();
-  }, [dispatch, country]);
+    disaptch(getCountryDetails(country));
+  }, [country, disaptch]);
 
   if (!pickedCountry) return;
 
@@ -94,7 +60,7 @@ const CountryDetail = () => {
           <p className="title">Languages:</p>
           <p className="text">
             {pickedCountry.languages.map((lang) => (
-              <span key={lang}>{lang}</span>
+              <span key={lang}>{lang} </span>
             ))}
           </p>
         </div>

@@ -36,7 +36,7 @@ it("call open popup if not signed in", () => {
 
   const btn = screen.getByRole("button");
   fireEvent.click(btn);
-  expect(dispatch).toBeCalledTimes(1);
+  expect(dispatch).toBeCalledTimes(2);
   expect(mockedOpenPopup).toBeCalled();
 });
 

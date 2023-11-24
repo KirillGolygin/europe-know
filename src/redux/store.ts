@@ -15,7 +15,12 @@ import {
 } from "redux-persist";
 
 import countriesReducer from "./countries-slice";
-import { GET_COUNTRIES, getCountriesSaga } from "./countries-slice";
+import {
+  GET_COUNTRIES,
+  getCountriesSaga,
+  GET_COUNTRY_DETAILS,
+  getCountryDetailsSaga,
+} from "./countries-slice";
 
 import popupsReducer from "./popups-slice";
 
@@ -33,6 +38,7 @@ function* sagas() {
   yield takeEvery(GET_COUNTRIES, getCountriesSaga);
   yield takeEvery(SIGNIN_USER, signinUserSaga);
   yield takeEvery(REG_USER, regUserSaga);
+  yield takeEvery(GET_COUNTRY_DETAILS, getCountryDetailsSaga);
 }
 
 const rootReducer = combineReducers({

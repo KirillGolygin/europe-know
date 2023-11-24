@@ -4,7 +4,7 @@ import { put, call } from "redux-saga/effects";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./store";
 
-import { getAllCountries } from "../api";
+import { getAllCountries, getCountryInfo } from "../api";
 
 import type { ICountry, IPickedCountry } from "../interfaces/country";
 import { AxiosResponse } from "axios";
@@ -40,6 +40,25 @@ export function* getCountriesSaga() {
   } catch (error) {
     yield put(getCountriesRejected(`Произошла ошибка: ${error}`));
   }
+}
+
+export function* getCountryDetailsSaga(action: PayloadAction<string>) {
+  const response: AxiosResponse<IPickedCountry[], unknown> = yield call(
+    getCountryInfo,
+    action.payload
+  );
+
+  const data: IPickedCountry = yield response.data[0];
+
+  const prepearedData: IPickedCountry = {
+    ...data,
+    currencies: Object.keys(data.currencies),
+    languages: Object.values(data.languages),
+    population: Number(data.population).toLocaleString("ru"),
+  };
+
+  yield put(pickCountry(prepearedData));
+  yield put(updateFavorites());
 }
 
 export const CountriesSlice = createSlice({
@@ -132,6 +151,9 @@ export const CountriesSlice = createSlice({
 
 export const GET_COUNTRIES = "countries/getCountries";
 export const getCountries = createAction(GET_COUNTRIES);
+
+export const GET_COUNTRY_DETAILS = "countries/getCountryDetails";
+export const getCountryDetails = createAction<string>(GET_COUNTRY_DETAILS);
 
 export const {
   getCountriesSuccess,
