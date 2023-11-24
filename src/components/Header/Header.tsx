@@ -9,6 +9,7 @@ import {
   toggleIsAlreadyRegistered,
 } from "../../redux/users-slice";
 import { openPopup, closePopup } from "../../redux/popups-slice";
+import { clearFavourites } from "../../redux/countries-slice";
 
 import Popup from "../Popup/Popup";
 import SignInForm from "../Forms/SignInForm/SigInForm";
@@ -43,6 +44,12 @@ const Header = ({
   const logout = () => {
     dispatch(logoutUser());
   };
+
+  const clearFavWhenClosePopup = () => {
+    dispatch(closePopup());
+    dispatch(clearFavourites());
+  };
+
   const showPopup = (type: "signin" | "register") => dispatch(openPopup(type));
   return (
     <header className="header">
@@ -75,7 +82,7 @@ const Header = ({
         </div>
       </nav>
       {popup.isOpen && (
-        <Popup closePopup={() => dispatch(closePopup())}>
+        <Popup closePopup={clearFavWhenClosePopup}>
           {popup.type === "signin" ? <SignInForm /> : <RegistrationForm />}
         </Popup>
       )}
