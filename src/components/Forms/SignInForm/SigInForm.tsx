@@ -1,13 +1,13 @@
-import { useAppDispatch } from "../../../redux/hooks/redux-hooks";
+import { useAppDispatch } from '../../../redux/hooks/redux-hooks';
 
-import { saveSigninFormData, signinUser } from "../../../redux/users-slice";
-import { closePopup } from "../../../redux/popups-slice";
+import { saveSigninFormData, signinUser } from '../../../redux/users-slice';
+import { closePopup } from '../../../redux/popups-slice';
 
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler } from 'react-hook-form';
 
-import type { IUser } from "../../../interfaces/user";
+import type { IUser } from '../../../interfaces/user';
 
-import "../Form.scss";
+import '../Form.scss';
 
 interface Inputs extends IUser {}
 
@@ -18,7 +18,7 @@ const SignInForm = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors }
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -37,12 +37,12 @@ const SignInForm = () => {
             login
             <input
               data-testid="login"
-              {...register("login", {
-                required: "Поле должно быть заполнено",
+              {...register('login', {
+                required: 'Поле должно быть заполнено',
                 pattern: {
                   value: /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-                  message: "Логин должен являться почтой",
-                },
+                  message: 'Логин должен являться почтой'
+                }
               })}
             />
             {errors.login && (
@@ -57,17 +57,16 @@ const SignInForm = () => {
             <input
               data-testid="password"
               type="password"
-              {...register("password", {
-                required: "Поле должно быть заполнено",
+              {...register('password', {
+                required: 'Поле должно быть заполнено',
                 minLength: {
                   value: 6,
-                  message: "Пароль должен содержать более 6 символов",
+                  message: 'Пароль должен содержать более 6 символов'
                 },
                 pattern: {
                   value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/,
-                  message:
-                    "Пароль должен содержать цифры, Заглавные и строчные латинские буквы",
-                },
+                  message: 'Пароль должен содержать цифры, Заглавные и строчные латинские буквы'
+                }
               })}
             />
             {errors.password && (

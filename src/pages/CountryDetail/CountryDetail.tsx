@@ -1,19 +1,15 @@
-import { useEffect } from "react";
-import { useParams } from "react-router";
+import { useEffect } from 'react';
+import { useParams } from 'react-router';
 
+import { useAppSelector, useAppDispatch } from '../../redux/hooks/redux-hooks';
 
-import { useAppSelector, useAppDispatch } from "../../redux/hooks/redux-hooks";
+import { getCountryDetails, selectPickedCountry } from '../../redux/countries-slice';
 
-import {
-  getCountryDetails,
-  selectPickedCountry,
-} from "../../redux/countries-slice";
+import Star from '../../components/Star/Star';
+import CountryInfoBlock from '../../components/CountryInfoBlock/CountryInfoBlock';
+import CountryInfoPic from '../../components/CountryInfoPic/CountryInfoPic';
 
-import Star from "../../components/Star/Star";
-import CountryInfoBlock from "../../components/CountryInfoBlock/CountryInfoBlock";
-import CountryInfoPic from "../../components/CountryInfoPic/CountryInfoPic";
-
-import "./CountryDetail.scss";
+import './CountryDetail.scss';
 
 const CountryDetail = () => {
   const disaptch = useAppDispatch();
@@ -33,10 +29,7 @@ const CountryDetail = () => {
       <div className="info-container">
         <div className="name">
           <h3 className="text">{pickedCountry.name.common}</h3>
-          <Star
-            countryName={pickedCountry.name.common}
-            favourite={pickedCountry.favourite}
-          />
+          <Star countryName={pickedCountry.name.common} favourite={pickedCountry.favourite} />
         </div>
 
         <CountryInfoBlock title="Capital" text={pickedCountry.capital} />
@@ -47,11 +40,7 @@ const CountryDetail = () => {
       </div>
 
       <div className="pics-container">
-        <CountryInfoPic
-          title="Flag"
-          src={pickedCountry.flags.png}
-          alt={pickedCountry.flags.alt}
-        />
+        <CountryInfoPic title="Flag" src={pickedCountry.flags.png} alt={pickedCountry.flags.alt} />
         <CountryInfoPic
           title="Coat of arms"
           src={pickedCountry.coatOfArms.png}

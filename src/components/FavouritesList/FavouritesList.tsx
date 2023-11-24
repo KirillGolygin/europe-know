@@ -1,10 +1,10 @@
-import { useAppSelector } from "../../redux/hooks/redux-hooks";
+import { useAppSelector } from '../../redux/hooks/redux-hooks';
 
-import CountryCard from "../CountryCard/CountryCard";
+import CountryCard from '../CountryCard/CountryCard';
 
-import { selectFavourites } from "../../redux/countries-slice";
+import { selectFavourites } from '../../redux/countries-slice';
 
-import "./FavouritesList.scss";
+import './FavouritesList.scss';
 
 const FavouritesList = () => {
   const favourites = useAppSelector(selectFavourites);

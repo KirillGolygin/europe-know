@@ -1,4 +1,4 @@
-import "./SigninError.scss";
+import './SigninError.scss';
 
 interface SigninErrorProps {
   errorMessage: string | null;

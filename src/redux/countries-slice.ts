@@ -1,13 +1,13 @@
-import { createAction, createSlice } from "@reduxjs/toolkit";
-import { put, call } from "redux-saga/effects";
+import { createAction, createSlice } from '@reduxjs/toolkit';
+import { put, call } from 'redux-saga/effects';
 
-import type { PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "./store";
+import type { PayloadAction } from '@reduxjs/toolkit';
+import type { RootState } from './store';
 
-import { getAllCountries, getCountryInfo } from "../api";
+import { getAllCountries, getCountryInfo } from '../api';
 
-import type { ICountry, IPickedCountry } from "../interfaces/country";
-import { AxiosResponse } from "axios";
+import type { ICountry, IPickedCountry } from '../interfaces/country';
+import { AxiosResponse } from 'axios';
 
 interface CountriesState {
   countries: ICountry[];
@@ -24,15 +24,13 @@ const initialState: CountriesState = {
   pickedCountry: null,
   filteredCountries: [],
   loading: false,
-  error: null,
+  error: null
 };
 
 export function* getCountriesSaga() {
   try {
     yield put(getCountriesPending());
-    const response: AxiosResponse<unknown, unknown> = yield call(
-      getAllCountries
-    );
+    const response: AxiosResponse<unknown, unknown> = yield call(getAllCountries);
 
     const payload: ICountry[] = yield response.data;
     yield put(getCountriesSuccess(payload));
@@ -54,7 +52,7 @@ export function* getCountryDetailsSaga(action: PayloadAction<string>) {
     ...data,
     currencies: Object.keys(data.currencies),
     languages: Object.values(data.languages),
-    population: Number(data.population).toLocaleString("ru"),
+    population: Number(data.population).toLocaleString('ru')
   };
 
   yield put(pickCountry(prepearedData));
@@ -62,7 +60,7 @@ export function* getCountryDetailsSaga(action: PayloadAction<string>) {
 }
 
 export const CountriesSlice = createSlice({
-  name: "countries",
+  name: 'countries',
   initialState,
   reducers: {
     getCountriesPending: (state) => {
@@ -83,11 +81,9 @@ export const CountriesSlice = createSlice({
     sortCountries: (state, action: PayloadAction<string>) => {
       state.filteredCountries = state.countries.filter((country) => {
         if (!action.payload) {
-          return country.name.common.toLowerCase().includes("");
+          return country.name.common.toLowerCase().includes('');
         } else {
-          return country.name.common
-            .toLowerCase()
-            .includes(action.payload.toLowerCase());
+          return country.name.common.toLowerCase().includes(action.payload.toLowerCase());
         }
       });
     },
@@ -145,14 +141,14 @@ export const CountriesSlice = createSlice({
     },
     pickCountry: (state, action: PayloadAction<IPickedCountry>) => {
       state.pickedCountry = action.payload;
-    },
-  },
+    }
+  }
 });
 
-export const GET_COUNTRIES = "countries/getCountries";
+export const GET_COUNTRIES = 'countries/getCountries';
 export const getCountries = createAction(GET_COUNTRIES);
 
-export const GET_COUNTRY_DETAILS = "countries/getCountryDetails";
+export const GET_COUNTRY_DETAILS = 'countries/getCountryDetails';
 export const getCountryDetails = createAction<string>(GET_COUNTRY_DETAILS);
 
 export const {
@@ -163,15 +159,13 @@ export const {
   changeFavourites,
   updateFavorites,
   clearFavourites,
-  pickCountry,
+  pickCountry
 } = CountriesSlice.actions;
 
 export const selectCountries = (state: RootState) => state.countries.countries;
-export const selectFilteredCountries = (state: RootState) =>
-  state.countries.filteredCountries;
+export const selectFilteredCountries = (state: RootState) => state.countries.filteredCountries;
 export const selectFavourites = (state: RootState) => state.countries.favourits;
-export const selectPickedCountry = (state: RootState) =>
-  state.countries.pickedCountry;
+export const selectPickedCountry = (state: RootState) => state.countries.pickedCountry;
 export const selectLoading = (state: RootState) => state.countries.loading;
 export const selectError = (state: RootState) => state.countries.error;
 

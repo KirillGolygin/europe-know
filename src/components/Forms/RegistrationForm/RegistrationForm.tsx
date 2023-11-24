@@ -1,13 +1,13 @@
-import { useAppDispatch } from "../../../redux/hooks/redux-hooks";
+import { useAppDispatch } from '../../../redux/hooks/redux-hooks';
 
-import { closePopup } from "../../../redux/popups-slice";
-import { registerUser, saveRegFormData } from "../../../redux/users-slice";
+import { closePopup } from '../../../redux/popups-slice';
+import { registerUser, saveRegFormData } from '../../../redux/users-slice';
 
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler } from 'react-hook-form';
 
-import type { IUser } from "../../../interfaces/user";
+import type { IUser } from '../../../interfaces/user';
 
-import "../Form.scss";
+import '../Form.scss';
 
 interface Inputs extends IUser {
   confirmPassword: string;
@@ -21,7 +21,7 @@ const RegistrationForm = () => {
     watch,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors }
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -40,12 +40,12 @@ const RegistrationForm = () => {
             login
             <input
               data-testid="login"
-              {...register("login", {
-                required: "Поле должно быть заполнено",
+              {...register('login', {
+                required: 'Поле должно быть заполнено',
                 pattern: {
                   value: /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-                  message: "Логин должен являться почтой",
-                },
+                  message: 'Логин должен являться почтой'
+                }
               })}
             />
             {errors.login && (
@@ -60,17 +60,16 @@ const RegistrationForm = () => {
             <input
               data-testid="password"
               type="password"
-              {...register("password", {
-                required: "Поле должно быть заполнено",
+              {...register('password', {
+                required: 'Поле должно быть заполнено',
                 minLength: {
                   value: 6,
-                  message: "Пароль должен содержать более 6 символов",
+                  message: 'Пароль должен содержать более 6 символов'
                 },
                 pattern: {
                   value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/,
-                  message:
-                    "Пароль должен содержать цифры, Заглавные и строчные латинские буквы",
-                },
+                  message: 'Пароль должен содержать цифры, Заглавные и строчные латинские буквы'
+                }
               })}
             />
             {errors.password && (
@@ -85,13 +84,13 @@ const RegistrationForm = () => {
             <input
               data-testid="confirm-password"
               type="password"
-              {...register("confirmPassword", {
-                required: "Поле должно быть заполнено",
+              {...register('confirmPassword', {
+                required: 'Поле должно быть заполнено',
                 validate: (val: string) => {
-                  if (watch("password") !== val) {
-                    return "Пароли не совпадают";
+                  if (watch('password') !== val) {
+                    return 'Пароли не совпадают';
                   }
-                },
+                }
               })}
             />
             {errors.confirmPassword && (

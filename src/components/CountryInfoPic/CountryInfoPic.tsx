@@ -1,4 +1,4 @@
-import "./CountryInfoPic.scss";
+import './CountryInfoPic.scss';
 
 interface CountryInfoBlockProps {
   title: string;

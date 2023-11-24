@@ -1,17 +1,17 @@
-import { Routes, Route } from "react-router";
+import { Routes, Route } from 'react-router';
 
-import ProtectedRoute from "./hoc/ProtectedRoute";
+import ProtectedRoute from './hoc/ProtectedRoute';
 
-import { useAppSelector } from "./redux/hooks/redux-hooks";
-import { selectCurrentUser } from "./redux/users-slice";
+import { useAppSelector } from './redux/hooks/redux-hooks';
+import { selectCurrentUser } from './redux/users-slice';
 
-import Main from "./pages/Main/Main";
-import CountryDetail from "./pages/CountryDetail/CountryDetail";
-import MyCountries from "./pages/MyCountries/MyCountries";
+import Main from './pages/Main/Main';
+import CountryDetail from './pages/CountryDetail/CountryDetail';
+import MyCountries from './pages/MyCountries/MyCountries';
 
-import Layout from "./components/Layout/Layout";
+import Layout from './components/Layout/Layout';
 
-import "./App.scss";
+import './App.scss';
 
 function App() {
   const user = useAppSelector(selectCurrentUser);

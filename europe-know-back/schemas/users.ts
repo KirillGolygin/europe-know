@@ -6,12 +6,12 @@ export default {
     {
       name: 'login',
       type: 'string',
-      title: 'Login',
+      title: 'Login'
     },
     {
       name: 'password',
       type: 'string',
-      title: 'Password',
-    },
-  ],
-}
+      title: 'Password'
+    }
+  ]
+};

@@ -1,20 +1,20 @@
-import { it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { it, expect, vi } from 'vitest';
+import { render, screen, fireEvent } from '@testing-library/react';
 
-import Popup from "./Popup";
+import Popup from './Popup';
 
-it("render Popup", () => {
+it('render Popup', () => {
   const component = render(
     <Popup closePopup={vi.fn()}>
       <div>test</div>
     </Popup>
   );
 
-  expect(screen.getByTestId("popup")).toBeInTheDocument();
+  expect(screen.getByTestId('popup')).toBeInTheDocument();
   expect(component).matchSnapshot();
 });
 
-it("close popup by clicking on backdrop", () => {
+it('close popup by clicking on backdrop', () => {
   const closePopup = vi.fn();
 
   render(
@@ -23,7 +23,7 @@ it("close popup by clicking on backdrop", () => {
     </Popup>
   );
 
-  fireEvent.click(screen.getByTestId("popup"));
+  fireEvent.click(screen.getByTestId('popup'));
   expect(closePopup).toBeCalled();
 });
 
@@ -36,6 +36,6 @@ it("don't close popup by clicking on items inside", () => {
     </Popup>
   );
 
-  fireEvent.click(screen.getByTestId("popup-content"));
+  fireEvent.click(screen.getByTestId('popup-content'));
   expect(closePopup).not.toBeCalled();
 });
