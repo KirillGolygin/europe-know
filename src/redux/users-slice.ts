@@ -30,7 +30,7 @@ const initialState: UsersState = {
 
 export function* signinUserSaga() {
   const { users } = yield select();
-  yield put(loginUserLoading());
+  yield put(clearSigninError());
   try {
     const response: AxiosResponse<unknown, unknown> = yield call(getUsers);
     const { result } = yield response.data;
@@ -64,7 +64,7 @@ export const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    loginUserLoading: (state) => {
+    clearSigninError: (state) => {
       state.signinErrorMessage = null;
     },
     loginUserSuccess: (state, action: PayloadAction<IUser>) => {
@@ -102,7 +102,7 @@ export const REG_USER = 'users/regUser';
 export const registerUser = createAction(REG_USER);
 
 export const {
-  loginUserLoading,
+  clearSigninError,
   loginUserSuccess,
   loginUseRejected,
   saveSigninFormData,

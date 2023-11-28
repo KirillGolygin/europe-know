@@ -4,7 +4,7 @@ import { useAppDispatch } from '../../redux/hooks/redux-hooks';
 
 import {
   logoutUser,
-  loginUserLoading,
+  clearSigninError,
   toggleRegisterStatus,
   toggleIsAlreadyRegistered
 } from '../../redux/users-slice';
@@ -82,7 +82,7 @@ const Header = ({ currentUser, popup, signinError, regStatus, isRegistered }: He
       )}
 
       {signinError && (
-        <SigninError closePopup={() => dispatch(loginUserLoading())} errorMessage={signinError} />
+        <SigninError closePopup={() => dispatch(clearSigninError())} errorMessage={signinError} />
       )}
 
       {isRegistered && (
