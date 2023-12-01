@@ -9,6 +9,11 @@
         display: flex;
         justify-content: space-between;
 
+        @media screen and (max-width: 450px) {
+            flex-direction: column;
+            gap: 30px;
+        }
+
         .heading {
             text-decoration: none;
             color: #252525;
@@ -20,6 +25,10 @@
         .btn-group {
             display: flex;
             gap: 30px;
+
+            @media screen and (max-width: 450px) {
+                justify-content: space-between;
+            }
 
             .button {
                 color: #252525;
