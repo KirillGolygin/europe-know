@@ -7,4 +7,12 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 54px;
+
+    @media screen and (max-width: 1026px) {
+        justify-items: center;
+    }
+
+    @media screen and (max-width: 750px) {
+        grid-template-columns: 1fr;
+    }
 }

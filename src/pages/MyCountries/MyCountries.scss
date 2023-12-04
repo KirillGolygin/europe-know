@@ -1,6 +1,10 @@
 .myCountries-wrapper {
     padding: 0 114px;
 
+    @media screen and (max-width: 450px) {
+        padding: 0;
+    }
+
     .empty-fav {
     position: absolute;
     top: 50%;
