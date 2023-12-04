@@ -9,10 +9,9 @@
             fill: transparent;
 
             @media(hover: hover) {
-                fill: black;
-            }
-            @media (hover: none) {
-                fill: none;
+                &:hover {
+                    fill: black;
+                };
             }
         }
     
