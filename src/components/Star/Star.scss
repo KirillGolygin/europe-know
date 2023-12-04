@@ -8,8 +8,11 @@
          &:first-child {
             fill: transparent;
 
-            &:hover {
+            @media(hover: hover) {
                 fill: black;
+            }
+            @media (hover: none) {
+                fill: none;
             }
         }
     
